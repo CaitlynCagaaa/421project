@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
  
 # Load the image
-image = cv2.imread(r"C:\Users\caitl\OneDrive\Pictures\shadow_box.jpg",cv2.IMREAD_UNCHANGED)
+image = cv2.imread(r"C:\Users\caitl\OneDrive\Pictures\shadow_box1.jpg",cv2.IMREAD_UNCHANGED)
  
 # Display the image
 
