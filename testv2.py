@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
- 
+# optimized using im14
 # Load the image
 image = cv2.imread(r"boundries/im14.jpg",cv2.IMREAD_UNCHANGED)
 
