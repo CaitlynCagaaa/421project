@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
+import config
 # optimized using im14
 # Load the image
 image = cv2.imread(r"boundries/im14.jpg",cv2.IMREAD_UNCHANGED)
@@ -8,7 +9,7 @@ image = cv2.imread(r"boundries/im14.jpg",cv2.IMREAD_UNCHANGED)
 # Display the image
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
 #cv2.imshow("norm", normalized_image)
-gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+gray = cv2.cvtColor(image,config.grayscale)
 cv2.imshow("Im", gray)
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
 #cv2.imshow("norm", normalized_image)
