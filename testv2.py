@@ -38,7 +38,13 @@ for i in range(len(contours)):
     if hierarchy[0,i,3] <= 0:
         x,y,w,h = cv2.boundingRect(contours[i])
         if w > con.get('minWidth') and h >con.get('minHeight'):
-            cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 2)
+            cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 1)
+            (wt, ht), _ = cv2.getTextSize(
+        'toolname ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .05, 1)
+
+# Prints the text.    
+            img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (0, 0, 255), -1)
+            cv2.putText(result, 'toolname ' + str(0)+'%', (x, y-ht),cv2.FONT_HERSHEY_SIMPLEX,.05, (36,255,12), 1)
             temp= str(x) +str(y) +str(w) +str(h) +".jpg"
     #print("x,y,w,h:",x,y,w,h)
             if w>con.get('minWidth') and h>con.get('minHeight'):
@@ -50,7 +56,7 @@ for i in range(len(contours)):
 
     #i=i+1
     
-
+result =cv2.resize(result,(result.shape[1] * 3,result.shape[0]*3 ))
 cv2.imshow("bounding boxes", result)
 # noise removal
 
