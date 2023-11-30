@@ -1,19 +1,22 @@
+import yaml
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-import config
+config =open("conf.yaml", "r") 
+con =yaml.safe_load(config)
+print(config)
 # optimized using im14
 # Load the image
 image = cv2.imread(r"boundries/im14.jpg",cv2.IMREAD_UNCHANGED)
-
+print(con)
 # Display the image
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
 #cv2.imshow("norm", normalized_image)
-gray = cv2.cvtColor(image,config.grayscale)
+gray = cv2.cvtColor(image,con.get('grayscale'))
 cv2.imshow("Im", gray)
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
 #cv2.imshow("norm", normalized_image)
-ret, thresh = cv2.threshold(gray,90,255,cv2.THRESH_BINARY_INV )
+ret, thresh = cv2.threshold(gray,con.get('minThreshValue'),255,con.get('threshType') )
 cv2.imshow("Ima", thresh)
 result = image.copy()
 kernel = np.ones((3,3),np.uint8)
@@ -34,11 +37,11 @@ for i in range(len(contours)):
    #print(hierarchy)
     if hierarchy[0,i,3] <= 0:
         x,y,w,h = cv2.boundingRect(contours[i])
-        if w > 4 and h >4:
+        if w > con.get('minWidth') and h >con.get('minHeight'):
             cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 2)
             temp= str(x) +str(y) +str(w) +str(h) +".jpg"
     #print("x,y,w,h:",x,y,w,h)
-            if w>1 and h>1:
+            if w>con.get('minWidth') and h>con.get('minHeight'):
         #print(image.shape) 
                 cropped_image = image[y:y+h, x:x+w].copy()
         #print(cropped_image)
