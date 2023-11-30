@@ -7,7 +7,7 @@ con =yaml.safe_load(config)
 print(config)
 # optimized using im14
 # Load the image
-image = cv2.imread(r"boundries/im14.jpg",cv2.IMREAD_UNCHANGED)
+image = cv2.imread(r"boundries/im11.jpg",cv2.IMREAD_UNCHANGED)
 print(con)
 # Display the image
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
@@ -21,7 +21,7 @@ cv2.imshow("Ima", thresh)
 result = image.copy()
 kernel = np.ones((3,3),np.uint8)
 #cv2.imshow("kernel", kernel)
-opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = 2)
+opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = con.get("dilateObject"))
 cv2.imshow("open", opening)
 # sure background area
 
@@ -52,7 +52,7 @@ for i in range(len(contours)):
                 cropped_image = image[y:y+h, x:x+w].copy()
         #print(cropped_image)
                 cv2.imshow( "cropped",cropped_image )
-                cv2.imwrite('boundries/im14/img' +temp,cropped_image)
+                cv2.imwrite('boundries/im11/img' +temp,cropped_image)
 
     #i=i+1
     
