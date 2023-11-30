@@ -40,11 +40,11 @@ for i in range(len(contours)):
         if w > con.get('minWidth') and h >con.get('minHeight'):
             cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 1)
             (wt, ht), _ = cv2.getTextSize(
-        'toolname ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .05, 1)
+        'toolname ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .003*w, 1)
 
 # Prints the text.    
             img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (0, 0, 255), -1)
-            cv2.putText(result, 'toolname ' + str(0)+'%', (x, y-ht),cv2.FONT_HERSHEY_SIMPLEX,.05, (36,255,12), 1)
+            cv2.putText(result, 'toolname ' + str(0)+'%', (x, y),cv2.FONT_HERSHEY_SIMPLEX,.003*w, (36,255,12), 1)
             temp= str(x) +str(y) +str(w) +str(h) +".jpg"
     #print("x,y,w,h:",x,y,w,h)
             if w>con.get('minWidth') and h>con.get('minHeight'):
