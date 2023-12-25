@@ -16,7 +16,7 @@ grayscale: 10
 #  cv::THRESH_OTSU = 8,
 #  cv::THRESH_TRIANGLE = 16
 #}
-threshType: 1
+threshType: 16
 
 # the minumum value for thresholding, the larger the difference in grayscale betweeen the background and the object in 
 # the picture the bigger the value 
