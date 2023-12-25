@@ -54,7 +54,7 @@ with open('data.json', 'w') as f:
         #print(image.shape) 
                 cropped_image = image[y:y+h, x:x+w].copy()
                
-                dump = {'ID': i, 'Name': temp, 'Location': 0, 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , h : 'H', 'pic':'boundries/im1/img' +temp}
+                dump = {'ID': i, 'Name': 'img' + str(i), 'Location': 0, 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'pic':'boundries/im1/img' +temp}
                 json.dump(dump,f)
                 f.write(',\n')
         #print(cropped_image)
