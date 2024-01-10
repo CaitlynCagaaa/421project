@@ -30,9 +30,15 @@ contours, hierarchy= cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SI
 for i in range(len(contours)):
     print(i)
    #print(hierarchy)
-    if hierarchy[0,i,3] <= 0:
+    if hierarchy[0,i,3] <0:
+         x,y,w,h = cv2.boundingRect(contours[i])
+         if w > 10 and h >10:
+            cv2.rectangle(result, (x, y), (x+w, y+h), (255, 0, 0), 1)
+            (wt, ht), _ = cv2.getTextSize(
+        'drawer ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .003*w, 1)
+    if hierarchy[0,i,3] == 0:
         x,y,w,h = cv2.boundingRect(contours[i])
-        if w > 4 and h >4:
+        if w > 10 and h >10:
             cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 1)
             (wt, ht), _ = cv2.getTextSize(
         'toolname ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .003*w, 1)

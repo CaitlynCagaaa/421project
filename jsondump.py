@@ -4,11 +4,12 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 config =open("conf.yaml", "r") 
+file = "boundries/im14"
 con =yaml.safe_load(config)
 print(config)
 # optimized using im14
 # Load the image
-image = cv2.imread(r"boundries/im1.jpg",cv2.IMREAD_UNCHANGED)
+image = cv2.imread(r""+file +".jpg",cv2.IMREAD_UNCHANGED)
 print(con)
 # Display the image
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
@@ -33,12 +34,38 @@ dist_transform = cv2.distanceTransform(thresh,cv2.DIST_L1,0)
 cv2.imshow("I", dist_transform)
 contours, hierarchy= cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 #contours = contours[0] if len(contours) == 2 else contours[1]
+check = 1
 with open('data.json', 'w') as f:
  f.write('{"Tools": [')
  for i in range(len(contours)):
     print(i)
-   #print(hierarchy)
-    if hierarchy[0,i,3] <= 0:
+    print(hierarchy[0,i,3])
+    if hierarchy[0,i,3] <0 and check == 1:
+         check = 0
+         with open('drawer.json', 'w') as d:
+          x,y,w,h = cv2.boundingRect(contours[i])
+          if w > con.get('minWidth') and h >con.get('minHeight'):
+            cv2.rectangle(result, (x, y), (x+w, y+h), (255, 0, 0), 1)
+            (wt, ht), _ = cv2.getTextSize(
+        'drawer ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .003*w, 1)
+
+# Prints the text.    
+            img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (255, 0,0), -1)
+            cv2.putText(result, 'drawer ' + str(0)+'%', (x, y),cv2.FONT_HERSHEY_SIMPLEX,.003*w, (36,255,12), 1)
+            temp= 'drawer ' +str(x) +str(y) +str(w) +str(h) +".jpg"
+    #print("x,y,w,h:",x,y,w,h)
+            if w>con.get('minWidth') and h>con.get('minHeight'):
+        #print(image.shape) 
+                cropped_image = image[y:y+h, x:x+w].copy()
+               
+                dump = {'ID': i, 'DrawerNum': 0 , 'BoxNum': 0,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picall':file+'/img' + temp, 'picno':file+'/img' + temp, 'locations':[{'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }, {'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' },{'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }] }
+                json.dump(dump,d)
+                
+        #print(cropped_image)
+                cv2.imshow( "cropped",cropped_image )
+                cv2.imwrite(file+'/img' +temp,cropped_image)
+            
+    if hierarchy[0,i,3] == 0:
         x,y,w,h = cv2.boundingRect(contours[i])
         if w > con.get('minWidth') and h >con.get('minHeight'):
             cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 1)
@@ -54,12 +81,12 @@ with open('data.json', 'w') as f:
         #print(image.shape) 
                 cropped_image = image[y:y+h, x:x+w].copy()
                
-                dump = {'ID': i, 'Name': 'img' + str(i), 'Location': 0, 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'pic':'boundries/im1/img' +temp}
+                dump = {'ID': i, 'Name': 'img' + str(i), 'Location': 0, 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'pic': file+'/img' +temp}
                 json.dump(dump,f)
                 f.write(',\n')
         #print(cropped_image)
                 cv2.imshow( "cropped",cropped_image )
-                cv2.imwrite('boundries/im1/img' +temp,cropped_image)
+                cv2.imwrite(file+'/img' +temp,cropped_image)
  f.write("]}")
     #i=i+1
 
