@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 config =open("conf.yaml", "r") 
-file = "boundries/im14"
+file = "boundries/im6"
 con =yaml.safe_load(config)
 print(config)
 # optimized using im14
@@ -15,10 +15,12 @@ print(con)
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
 #cv2.imshow("norm", normalized_image)
 gray = cv2.cvtColor(image,con.get('grayscale'))
+gray=cv2.medianBlur(gray,con.get('blur'))
 cv2.imshow("Im", gray)
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
 #cv2.imshow("norm", normalized_image)
 ret, thresh = cv2.threshold(gray,con.get('minThreshValue'),255,con.get('threshType') )
+#thresh = cv2.bitwise_not(thresh) 
 cv2.imshow("Ima", thresh)
 result = image.copy()
 kernel = np.ones((3,3),np.uint8)
@@ -27,21 +29,29 @@ opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = con.get("d
 cv2.imshow("open", opening)
 # sure background area
 
-sure_bg = cv2.dilate(opening,kernel,iterations=1)
+sure_bg = cv2.dilate(opening,kernel,iterations=2)
 cv2.imshow("Imag", sure_bg)
 # Finding sure foreground area
-dist_transform = cv2.distanceTransform(thresh,cv2.DIST_L1,0)
-cv2.imshow("I", dist_transform)
-contours, hierarchy= cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#dist_transform = cv2.distanceTransform(thresh,cv2.DIST_L1,0)
+#cv2.imshow("I", dist_transform)
+contours, hierarchy= cv2.findContours(sure_bg, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#print(contours)
+#print(hierarchy)
+res_cpy = result.copy()
+cv2.drawContours(image=res_cpy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=5, lineType=cv2.LINE_AA)
+print(hierarchy)
+cv2.imshow("contour", image)
+cv2.imwrite(file+'/imgbound.jpg',res_cpy)
 #contours = contours[0] if len(contours) == 2 else contours[1]
 check = 1
 with open('data.json', 'w') as f:
  f.write('{"Tools": [')
  for i in range(len(contours)):
-    print(i)
-    print(hierarchy[0,i,3])
-    if hierarchy[0,i,3] <0 and check == 1:
+    #print(i)
+    #print(hierarchy[0,i,3])
+    if hierarchy[0,i,3] ==0 and check == 1:
          check = 0
+         print("1")
          with open('drawer.json', 'w') as d:
           x,y,w,h = cv2.boundingRect(contours[i])
           if w > con.get('minWidth') and h >con.get('minHeight'):
@@ -65,7 +75,8 @@ with open('data.json', 'w') as f:
                 cv2.imshow( "cropped",cropped_image )
                 cv2.imwrite(file+'/img' +temp,cropped_image)
             
-    if hierarchy[0,i,3] == 0:
+    else:
+        print("2")
         x,y,w,h = cv2.boundingRect(contours[i])
         if w > con.get('minWidth') and h >con.get('minHeight'):
             cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 1)
@@ -90,27 +101,27 @@ with open('data.json', 'w') as f:
  f.write("]}")
     #i=i+1
 
-
-result =cv2.resize(result,(result.shape[1] * 3,result.shape[0]*3 ))
+cv2.imwrite(file+'/imgbounded.jpg',result)
+#result =cv2.resize(result,None,.75,.75)
 cv2.imshow("bounding boxes", result)
 # noise removal
 
-ret, sure_fg = cv2.threshold(dist_transform,0.10*dist_transform.max(),255,50)
+#ret, sure_fg = cv2.threshold(dist_transform,0.10*dist_transform.max(),255,50)
 # Finding unknown region
-sure_fg = np.uint8(sure_fg)
-cv2.imshow("Imagee", sure_fg)
-unknown = cv2.subtract(sure_bg,sure_fg)
+#sure_fg = np.uint8(sure_fg)
+#cv2.imshow("Imagee", sure_fg)
+#unknown = cv2.subtract(sure_bg,sure_fg)
 
 # Marker labelling
-ret, markers = cv2.connectedComponents(sure_fg)
+#ret, markers = cv2.connectedComponents(sure_fg)
 
 # Add one to all labels so that sure background is not 0, but 1
-markers = markers+1
+#markers = markers+1
 # Now, mark the region of unknown with zero
-markers[unknown==255] = 0
-markers = cv2.watershed(image,markers)
+#markers[unknown==255] = 0
+#markers = cv2.watershed(image,markers)
 
-image[markers == -1] = [255,0,0]
+#image[markers == -1] = [255,0,0]
 cv2.imshow("Image", image)
 # Wait for the user to press a key
 cv2.waitKey(0)

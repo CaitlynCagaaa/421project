@@ -14,7 +14,7 @@ threshType = cv2.THRESH_BINARY_INV
 # the picture the bigger the value 
 # should be an interger between 0 and 256
 # do not recommend changing
-minThreshValue = 90
+minThreshValue = 60
 
 # minimum number of pixels that make up the width of an object
 # increase to remove small non-objects

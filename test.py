@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
  
 # Load the image
-image = cv2.imread(r"boundries/im6.jpg",cv2.IMREAD_UNCHANGED)
+image = cv2.imread(r"boundries/im15.jpg",cv2.IMREAD_UNCHANGED)
 
 # Display the image
 #normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
@@ -53,7 +53,7 @@ for i in range(len(contours)):
                 cropped_image = image[y:y+h, x:x+w].copy()
         #print(cropped_image)
                 cv2.imshow( "cropped",cropped_image )
-                cv2.imwrite('boundries/im6/img' +temp,cropped_image)
+                cv2.imwrite('boundries/im15/img' +temp,cropped_image)
 
     #i=i+1
     

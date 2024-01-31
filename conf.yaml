@@ -3,6 +3,9 @@
 # do not reccomend changing
 grayscale: 10
 
+#how much to blur iage, is used to reduce noise, must be odd between 1 and 31
+blur: 1
+
 # how is the program finding the threshold, aka how is it turning it into just white and black to find contours
 # must be one of cv2 thresholding varaibles
 # Reccomendations :if draw has dark barkground use THRESH_BINARY_INV, if light background use THRESH_BINARY
@@ -16,7 +19,7 @@ grayscale: 10
 #  cv::THRESH_OTSU = 8,
 #  cv::THRESH_TRIANGLE = 16
 #}
-threshType: 1
+threshType: 8
 
 # the minumum value for thresholding, the larger the difference in grayscale betweeen the background and the object in 
 # the picture the bigger the value 
@@ -27,13 +30,13 @@ minThreshValue: 90
 # minimum number of pixels that make up the width of an object
 # increase to remove small non-objects
 # decrease to find small objects 
-minWidth: 4
+minWidth: 3
 
 #minimum number of pixels that make up the height of an object
 # increase to remove small non-objects
 # decrease to find small objects
-minHeight: 4
+minHeight: 3
 
-dilateObject: 2
+dilateObject: 0
 
 
