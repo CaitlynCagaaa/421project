@@ -68,12 +68,12 @@ with open('data.json', 'w') as f:
         #print(image.shape) 
                 cropped_image = image[y:y+h, x:x+w].copy()
                
-                dump = {'ID': i, 'DrawerNum': 0 , 'BoxNum': 0,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picall':file+'/img' + temp, 'picno':file+'/img' + temp, 'locations':[{'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }, {'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' },{'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }] }
+                dump = {'ID': i, 'DrawerNum': 0 , 'BoxNum': 0,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picall':file+'/img' + temp, 'picno':file+'/img' + temp, 'drawersymbols':[{'ID': 0,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }, {'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' },{'ID': 2,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }] }
                 json.dump(dump,d)
                 
         #print(cropped_image)
                 cv2.imshow( "cropped",cropped_image )
-                cv2.imwrite(file+'/img' +temp,cropped_image)
+                cv2.imwrite(file+'/imgdraw' +temp,cropped_image)
             
     else:
         print("2")
@@ -85,14 +85,15 @@ with open('data.json', 'w') as f:
 
 # Prints the text.    
             img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (0, 0, 255), -1)
-            cv2.putText(result, 'toolname ' + str(0)+'%', (x, y),cv2.FONT_HERSHEY_SIMPLEX,.003*w, (36,255,12), 1)
             temp= str(x) +str(y) +str(w) +str(h) +".jpg"
+            cv2.putText(result, temp + str(0)+'%', (x, y),cv2.FONT_HERSHEY_SIMPLEX,.003*w, (36,255,12), 1)
+            
     #print("x,y,w,h:",x,y,w,h)
             if w>con.get('minWidth') and h>con.get('minHeight'):
         #print(image.shape) 
                 cropped_image = image[y:y+h, x:x+w].copy()
                
-                dump = {'ID': i, 'Name': 'img' + str(i), 'Location': 0, 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'pic': file+'/img' +temp}
+                dump = {'ID': i, 'Name': 'img' + str(i),'ToolType': None, 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False,'IDMark': None , 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picfull': file+'/img' +temp, 'picnull': file+'/img' +temp}
                 json.dump(dump,f)
                 f.write(',\n')
         #print(cropped_image)
