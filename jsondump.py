@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 config =open("conf.yaml", "r") 
-file = "boundries/im6"
+file = "210de1"
 con =yaml.safe_load(config)
 print(config)
 # optimized using im14
@@ -29,7 +29,7 @@ opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = con.get("d
 cv2.imshow("open", opening)
 # sure background area
 
-sure_bg = cv2.dilate(opening,kernel,iterations=2)
+sure_bg = cv2.dilate(opening,kernel,iterations=con.get("UnDilateObject"))
 cv2.imshow("Imag", sure_bg)
 # Finding sure foreground area
 #dist_transform = cv2.distanceTransform(thresh,cv2.DIST_L1,0)
@@ -60,7 +60,7 @@ with open('data.json', 'w') as f:
         'drawer ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .003*w, 1)
 
 # Prints the text.    
-            img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (255, 0,0), -1)
+            img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (255, 0,0), 10)
             cv2.putText(result, 'drawer ' + str(0)+'%', (x, y),cv2.FONT_HERSHEY_SIMPLEX,.003*w, (36,255,12), 1)
             temp= 'drawer ' +str(x) +str(y) +str(w) +str(h) +".jpg"
     #print("x,y,w,h:",x,y,w,h)
@@ -79,12 +79,12 @@ with open('data.json', 'w') as f:
         print("2")
         x,y,w,h = cv2.boundingRect(contours[i])
         if w > con.get('minWidth') and h >con.get('minHeight'):
-            cv2.rectangle(result, (x, y), (x+w, y+h), (0, 0, 255), 1)
+            cv2.rectangle(result, (x, y), (x+w, y+h), (0, 255, 0), 10)
             (wt, ht), _ = cv2.getTextSize(
         'toolname ' + str(0)+'%', cv2.FONT_HERSHEY_SIMPLEX, .003*w, 1)
 
 # Prints the text.    
-            img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (0, 0, 255), -1)
+            img = cv2.rectangle(result, (x, y - ht), (x + wt, y), (255, 0, 0), 10)
             temp= str(x) +str(y) +str(w) +str(h) +".jpg"
             cv2.putText(result, temp + str(0)+'%', (x, y),cv2.FONT_HERSHEY_SIMPLEX,.003*w, (36,255,12), 1)
             
