@@ -14,9 +14,9 @@ while(True):
     # Capture the video frame 
     # by frame 
     ret, frame = vid.read() 
+    if ret == False:
+        continue
 
-    
-  
     # Display the resulting frame 
     cv2.imshow('frame', frame) 
     #print(ret)
