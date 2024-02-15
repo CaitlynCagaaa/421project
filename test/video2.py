@@ -23,13 +23,13 @@ def rotate_bound(image, angle):
 def drawtemp(template, frame, w, h, color1):
     temp = template
     x =0
-    while x <=500:
+    while x <=20:
      template =temp
      print(str(x) + " 1")
      template = rotate_bound(template, x/10)
      #cv2.imshow("temp", template)
      matched = cv2.matchTemplate(frame,template, cv2.TM_CCOEFF_NORMED)
-     threshold = .7
+     threshold = .85
 
      least_value, peak_value, least_coord, peak_coord = cv2.minMaxLoc(matched)
     #print(peak_value)
@@ -54,23 +54,23 @@ def drawtemp(template, frame, w, h, color1):
 
   
   
-template1 = cv2.imread('testvideo3temp1.jpg',cv2.IMREAD_UNCHANGED)
+template1 = cv2.imread('plier.jpg',cv2.IMREAD_UNCHANGED)
 h,w = template1.shape[0], template1.shape[1]
-template2= cv2.imread('testvideo3temp2.jpg',cv2.IMREAD_UNCHANGED)
+template2= cv2.imread('hammer.jpg',cv2.IMREAD_UNCHANGED)
 h2,w2 = template2.shape[0], template2.shape[1]
-template3= cv2.imread('testvideo3temp3.jpg',cv2.IMREAD_UNCHANGED)
+template3= cv2.imread('mallet.jpg',cv2.IMREAD_UNCHANGED)
 h3,w3 = template3.shape[0], template3.shape[1]
-template4= cv2.imread('testvideo3temp4.jpg',cv2.IMREAD_UNCHANGED)
+template4= cv2.imread('hammer_full.jpg',cv2.IMREAD_UNCHANGED)
 h4,w4 = template4.shape[0], template4.shape[1]
-template5= cv2.imread('testvideo3temp5.jpg',cv2.IMREAD_UNCHANGED)
+template5= cv2.imread('plier_red.jpg',cv2.IMREAD_UNCHANGED)
 h5,w5 = template5.shape[0], template5.shape[1]
 # define a video capture object 
-vid = cv2.VideoCapture('testvideo3.mp4') 
+vid = cv2.VideoCapture('shapematching.avi') 
 frame_width = int(vid.get(3)) 
 frame_height = int(vid.get(4)) 
    
 size = (frame_width, frame_height) 
-result = cv2.VideoWriter('resulttestvideoverylong2.avi',  
+result = cv2.VideoWriter('matchvideolessstrict.avi',  
                          cv2.VideoWriter_fourcc(*'MJPG'), 
                          12, size) 
 cv2.imwrite("b.jpg", template5)

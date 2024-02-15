@@ -1,11 +1,11 @@
 import cv2 
 import numpy as np
 import math
-vid = cv2.VideoCapture('210de.ts') 
+vid = cv2.VideoCapture('shapesmatching.ts') 
 frame_width = int(vid.get(3)) 
 frame_height = int(vid.get(4)) 
 size = (frame_width, frame_height) 
-result = cv2.VideoWriter('210de.avi',  
+result = cv2.VideoWriter('shapematching.avi',  
                          cv2.VideoWriter_fourcc(*'MJPG'), 
                          12, size) 
 i =0

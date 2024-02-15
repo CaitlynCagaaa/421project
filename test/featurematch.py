@@ -20,7 +20,7 @@ def convert_to_grayscale(pic1,pic2):
 # and descriptors from the image
 def detector(image1,image2):
     # creating ORB detector
-    detect = cv2.ORB_create(nfeatures=100)
+    detect = cv2.ORB_create(nfeatures=10)
  
     # finding key points and descriptors of both images 
     # using detectAndCompute() function
@@ -45,12 +45,13 @@ def display_output(pic1,kpt1,pic2,kpt2,best_match):
                                    kpt2,best_match[:30],None,flags=2)
     #output_image =cv2.resize(output_image,(700,700))
     cv2.imshow('Output image',output_image)
+    cv2.imwrite('featurematch.jpg', output_image)
  
 # main function
 if __name__ == '__main__':
     # giving the path of both of the images
-    first_image_path = 'boundries/im15match.jpg'
-    second_image_path = 'boundries/im15.jpg'
+    first_image_path = 'mallet.jpg'
+    second_image_path = 'shape_all.jpg'
  
     # reading the image from there paths
     img1, img2 = read_image(first_image_path,second_image_path)
@@ -70,5 +71,6 @@ if __name__ == '__main__':
     # after drawing the feature matches displaying the output image
 
     display_output(gray_pic1,key_pt1,gray_pic2,key_pt2,number_of_matches)
+    
     cv2.waitKey()
     cv2.destroyAllWindows()
