@@ -1,0 +1,5 @@
+threshold: .85
+degrees: 1
+degreeDiv: 10
+#rtsp:
+#database:

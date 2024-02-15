@@ -6,9 +6,13 @@ import yaml
 from matplotlib import pyplot as plt
 import argparse
 
-
+def retrieveDrawers():
+    f = open('drawer.json')
+    data = json.load(f)
 
 def main():
+    config =open("g_conf.yaml", "r") 
+    con =yaml.safe_load(config)
     ap = argparse.ArgumentParser()
     ap.add_argument("-test", "--test",type=str, required=False,
     help="location of video for testing", default=None)
@@ -24,6 +28,9 @@ def main():
             print(args.test)
     else:
         print(' no ')
+    
+    #retrieve from database
+        
    
 
 
