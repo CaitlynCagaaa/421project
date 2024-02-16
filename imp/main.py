@@ -5,10 +5,12 @@ import json
 import yaml
 from matplotlib import pyplot as plt
 import argparse
+import drawer
 
 def retrieveDrawers():
     f = open('drawer.json')
     data = json.load(f)
+    return f
 
 def main():
     config =open("g_conf.yaml", "r") 
@@ -26,6 +28,16 @@ def main():
         vid = cv2.VideoCapture(args.test) 
         if vid.isOpened():
             print(args.test)
+            ret, frame = vid.read()
+            drawerList = retrieveDrawers()
+            events = {}
+            tools = None
+            while(ret):
+                drawer.find_drawer(frame, drawerList, events, tools)
+
+
+
+            
     else:
         print(' no ')
     

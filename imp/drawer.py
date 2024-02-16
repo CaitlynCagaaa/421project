@@ -3,10 +3,13 @@ import numpy as np
 import math
 import json
 
-def find_drawer(frame, drawers):
+def find_drawer(frame, drawers, events, tools):
+   for drawer in drawers:
+      is_open(frame, )
+      
    return
 
-def is_open(frame, templates,pixelvalues,numboftemplates ):
+def is_open(frame, templates,pixelvalues,numboftemplates):
   return
 
 
