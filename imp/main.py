@@ -6,6 +6,7 @@ import yaml
 from matplotlib import pyplot as plt
 import argparse
 import drawer
+import datetime;
 
 def retrieveDrawers():
     f = open('drawer.json')
@@ -13,6 +14,8 @@ def retrieveDrawers():
     return f
 
 def main():
+    timestampStart= datetime.now()
+    timestampFrame =timestampStart
     config =open("g_conf.yaml", "r") 
     con =yaml.safe_load(config)
     ap = argparse.ArgumentParser()
@@ -30,10 +33,10 @@ def main():
             print(args.test)
             ret, frame = vid.read()
             drawerList = retrieveDrawers()
-            events = {}
+            events = {"events":[]}
             tools = None
             while(ret):
-                drawer.find_drawer(frame, drawerList, events, tools)
+                drawer.find_drawer(frame, drawerList, events, tools,1, timestampFrame)
 
 
 

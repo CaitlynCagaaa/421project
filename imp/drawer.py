@@ -1,16 +1,37 @@
 import cv2 
 import numpy as np
+import datetime;
 import math
 import json
 
-def find_drawer(frame, drawers, events, tools):
+def find_drawer(frame, drawers, events, tools, UserID, timestampFrame):
    for drawer in drawers:
-      is_open(frame, )
+     found, id, place, similarity= is_open(frame, drawer["drawersymbols"],3)
+     if is_open(frame, drawer["drawersymbols"],3):
+        events["events"].append({"ID": 0, "EventTyp": 0, "ToolID": None, "UserID": UserID, "Timestamp":timestampFrame ,"Location": drawer["ID"]})
+        return drawer
       
-   return
+   return None
 
-def is_open(frame, templates,pixelvalues,numboftemplates):
-  return
+def is_open(frame, templates,numboftemplates):
+  i = 0
+  max =0
+  color = (0,0,0)
+  placeMax =None
+  similarityMax = 0
+  for template in templates:
+     pic = cv2.imread(template["picall"])
+     frame_width = int(frame.get(3)) 
+     frame_height = int(frame.get(4))  
+     color[i] =256
+     found,place,similarity = drawtemp(pic, frame, frame_width, frame_height,color, .8,1,1,10)
+     if found == True and similarity>similarityMax:
+       max =i
+       placeMac = place
+       similarityMax = similarity
+     i=i+1
+     
+  return found, max, placeMax, similarityMax
 
 
 def rotate_bound(image, angle):
@@ -29,6 +50,9 @@ def rotate_bound(image, angle):
 
 
 def drawtemp(template, frame, w, h, color1, threshold, draw,degrees,degreeDiv):
+    found = False
+    place =None
+    similarity =None
     temp = template
     x =0
     while x <=degrees*degreeDiv:
@@ -42,10 +66,11 @@ def drawtemp(template, frame, w, h, color1, threshold, draw,degrees,degreeDiv):
      least_value, peak_value, least_coord, peak_coord = cv2.minMaxLoc(matched)
     #print(peak_value)
      if peak_value >= threshold:
+      found = True
       highlight_start = peak_coord
-    
+      similarity = peak_value
       highlight_end = (highlight_start[0] + w, highlight_start[1] + h)
-
+      place =(highlight_start,highlight_end)
       if(draw ==1):
         cv2.rectangle(frame, highlight_start, highlight_end, color1, 1 )
       
@@ -59,6 +84,7 @@ def drawtemp(template, frame, w, h, color1, threshold, draw,degrees,degreeDiv):
      
     
     print(str(x) + "angle")
+    return found, place, peak_value
     
 
   
