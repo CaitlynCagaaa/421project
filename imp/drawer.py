@@ -6,19 +6,29 @@ import json
 
 def find_drawer(frame, drawers, events, tools, UserID, timestampFrame):
    for drawer in drawers:
-     found, id, place, similarity= is_open(frame, drawer["drawersymbols"],3)
-     if is_open(frame, drawer["drawersymbols"],3):
+     found, template, place, similarity= is_open(frame, drawer["drawersymbols"],3)
+     if is_open(frame, drawer["drawersymbols"]):
         events["events"].append({"ID": 0, "EventTyp": 0, "ToolID": None, "UserID": UserID, "Timestamp":timestampFrame ,"Location": drawer["ID"]})
-        return drawer
+        drawSize = drawer_location(frame, place, drawer, template)
+        return drawer, drawSize
       
    return None
 
-def is_open(frame, templates,numboftemplates):
+def drawer_location(frame, place, drawer, template):
+  xDiff = template["X"]-place[0][0]
+  yDiff = template["Y"]-place[0][1]
+  drawSize = (0,0)
+  drawSize[0] = drawer["W"] +xDiff
+  drawSize[1] = drawer["H"] +yDiff
+  
+  
+  return drawSize
+def is_open(frame, templates):
   i = 0
-  max =0
   color = (0,0,0)
   placeMax =None
   similarityMax = 0
+  foundTemplate =None
   for template in templates:
      pic = cv2.imread(template["picall"])
      frame_width = int(frame.get(3)) 
@@ -31,7 +41,7 @@ def is_open(frame, templates,numboftemplates):
        similarityMax = similarity
      i=i+1
      
-  return found, max, placeMax, similarityMax
+  return found, foundTemplate, placeMax, similarityMax
 
 
 def rotate_bound(image, angle):
