@@ -6,8 +6,8 @@ import json
 
 def find_drawer(frame, drawers, events, tools, UserID, timestampFrame):
    for drawer in drawers:
-     found, template, place, similarity= is_open(frame, drawer["drawersymbols"],3)
-     if is_open(frame, drawer["drawersymbols"]):
+     found, template, place = is_open(frame, drawer["drawersymbols"],3)
+     if found:
         events["events"].append({"ID": 0, "EventTyp": 0, "ToolID": None, "UserID": UserID, "Timestamp":timestampFrame ,"Location": drawer["ID"]})
         drawSize = drawer_location(frame, place, drawer, template)
         return drawer, drawSize
@@ -41,7 +41,7 @@ def is_open(frame, templates):
        similarityMax = similarity
      i=i+1
      
-  return found, foundTemplate, placeMax, similarityMax
+  return found, foundTemplate, placeMax
 
 
 def rotate_bound(image, angle):
