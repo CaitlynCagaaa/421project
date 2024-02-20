@@ -27,7 +27,7 @@ def is_open(frame, templates,numboftemplates):
      found,place,similarity = drawtemp(pic, frame, frame_width, frame_height,color, .8,1,1,10)
      if found == True and similarity>similarityMax:
        max =i
-       placeMac = place
+       placeMax = place
        similarityMax = similarity
      i=i+1
      
