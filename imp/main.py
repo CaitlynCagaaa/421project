@@ -6,12 +6,20 @@ import yaml
 from matplotlib import pyplot as plt
 import argparse
 import drawer
-import datetime;
+from datetime import datetime, timedelta
 
-def retrieveDrawers():
+def print_records(events, toolboxID):
+    for event in events["events"]:
+        if event["EventType"] == 0:
+            print("Opened: Toolbox " + str(toolboxID) + " Drawer "+ event["Location"] + ": " + event["Timestamp"] + " " + event["UserID"])
+        if event["EventType"] == 1:
+            print("Closed: Toolbox " + str(toolboxID) + " Drawer "+ event["Location"] + ": " + event["Timestamp"] + " " + event["UserID"])
+    
+    return
+def retrieve_drawers():
     f = open('drawer.json')
     data = json.load(f)
-    return f
+    return data
 
 def main():
     timestampStart= datetime.now()
@@ -23,20 +31,41 @@ def main():
     help="location of video for testing", default=None)
     ap.add_argument("-record", "--record", type=int,required=False,
     help="int value for save modified video or not", default=False)
-    print('check')
     args = ap.parse_args()
-    if args.record ==1:
-        print("record")
     if args.test!=None:
         vid = cv2.VideoCapture(args.test) 
+        if args.record==1:
+            print("recording")
+            frame_width = int(vid.get(3)) 
+            frame_height = int(vid.get(4)) 
+            size = (frame_width, frame_height) 
+            recordedVideo = cv2.VideoWriter( "test" + ".avi",  
+                         cv2.VideoWriter_fourcc(*'MJPG'), 
+                         12, size) 
+            print("test" +str(timestampStart) + ".avi")
         if vid.isOpened():
             print(args.test)
             ret, frame = vid.read()
-            drawerList = retrieveDrawers()
+            print(ret)
+            drawerList = retrieve_drawers()
             events = {"events":[]}
             tools = None
+            drawerWasOpen =0
+            lastDrawer= None
             while(ret):
-                drawer.find_drawer(frame, drawerList, events, tools,1, timestampFrame)
+                print(ret)
+                currentDrawer = drawer.find_drawer(frame, drawerList, events, tools,1, timestampFrame,args.record)
+                if lastDrawer!=None and currentDrawer!=lastDrawer:
+                    events["events"].append({"ID": 0, "EventType": 1, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": drawer["ID"]})
+
+                if args.record==1:
+                    print("write")
+                    recordedVideo.write(frame)
+                ret, frame = vid.read() 
+                timestampFrame = timedelta(seconds= 1/12)
+            vid.release() 
+            print_records(events, 0)
+
 
 
 

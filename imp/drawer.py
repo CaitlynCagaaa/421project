@@ -1,44 +1,46 @@
 import cv2 
 import numpy as np
+from matplotlib import pyplot as plt
 import datetime;
 import math
 import json
 
-def find_drawer(frame, drawers, events, tools, UserID, timestampFrame):
+def find_drawer(frame, drawers, events, tools, UserID, timestampFrame,record):
+   print("Enter find")
+   print(drawers)
    for drawer in drawers:
-     found, template, place = is_open(frame, drawer["drawersymbols"],3)
+     print("drawer")
+     found, template, place = is_open(frame, drawer["drawersymbols"],record)
      if found:
-        events["events"].append({"ID": 0, "EventTyp": 0, "ToolID": None, "UserID": UserID, "Timestamp":timestampFrame ,"Location": drawer["ID"]})
-        drawSize = drawer_location(frame, place, drawer, template)
+        events["events"].append({"ID": 0, "EventType": 0, "ToolID": None, "UserID": UserID, "Timestamp":timestampFrame ,"Location": drawer["ID"]})
+        drawSize = drawer_location(frame, place, drawer, template,record)
         return drawer, drawSize
       
-   return None
+   return None, None
 
-def drawer_location(frame, place, drawer, template):
+def drawer_location(frame, place, drawer, template, record):
   xDiff = template["X"]-place[0][0]
   yDiff = template["Y"]-place[0][1]
-  drawSize = (0,0)
-  drawSize[0] = drawer["W"] +xDiff
-  drawSize[1] = drawer["H"] +yDiff
-  
-  
+  drawSize = (drawer["W"] +xDiff,drawer["H"] +yDiff)
+  if record ==1:
+    cv2.rectangle(frame, (drawer["X"],drawer["Y"]), drawSize, (256,256,256), 1 )
   return drawSize
-def is_open(frame, templates):
+def is_open(frame, templates,record):
   i = 0
-  color = (0,0,0)
+  color = [(256,0,0), (0,256,0), (0,0,256)]
   placeMax =None
   similarityMax = 0
   foundTemplate =None
   for template in templates:
      pic = cv2.imread(template["picall"])
-     frame_width = int(frame.get(3)) 
-     frame_height = int(frame.get(4))  
-     color[i] =256
-     found,place,similarity = drawtemp(pic, frame, frame_width, frame_height,color, .8,1,1,10)
+     frame_width = pic.shape[1]
+     frame_height = pic.shape[0]
+     found,place,similarity = drawtemp(pic, frame, frame_width, frame_height,color[i], .8,record,1,10)
      if found == True and similarity>similarityMax:
        max =i
        placeMax = place
        similarityMax = similarity
+       foundTemplate =template
      i=i+1
      
   return found, foundTemplate, placeMax
@@ -99,71 +101,3 @@ def drawtemp(template, frame, w, h, color1, threshold, draw,degrees,degreeDiv):
 
   
   
-template1 = cv2.imread('plier.jpg',cv2.IMREAD_UNCHANGED)
-h,w = template1.shape[0], template1.shape[1]
-template2= cv2.imread('hammer.jpg',cv2.IMREAD_UNCHANGED)
-h2,w2 = template2.shape[0], template2.shape[1]
-template3= cv2.imread('mallet.jpg',cv2.IMREAD_UNCHANGED)
-h3,w3 = template3.shape[0], template3.shape[1]
-template4= cv2.imread('hammer_full.jpg',cv2.IMREAD_UNCHANGED)
-h4,w4 = template4.shape[0], template4.shape[1]
-template5= cv2.imread('plier_red.jpg',cv2.IMREAD_UNCHANGED)
-h5,w5 = template5.shape[0], template5.shape[1]
-# define a video capture object 
-vid = cv2.VideoCapture('shapematching.avi') 
-frame_width = int(vid.get(3)) 
-frame_height = int(vid.get(4)) 
-   
-size = (frame_width, frame_height) 
-result = cv2.VideoWriter('matchvideostrict.avi',  
-                         cv2.VideoWriter_fourcc(*'MJPG'), 
-                         12, size) 
-cv2.imwrite("b.jpg", template5)
-template5 = rotate_bound(template5, .1)
-cv2.imwrite("t.jpg", template5)
-while(True): 
-      
-    # Capture the video frame 
-    # by frame 
-    ret, frame = vid.read() 
-  
-    # Display the resulting frame 
-    #cv2.imshow('frame', frame) 
-    #print(ret)
-    #cv2.imshow('im1',img)
-    #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    
-    #cv2.imshow('Template',template)
-    #gray1 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    color = (255, 0, 0)
-    drawtemp(template1, frame, w, h, color)
-    color = (0, 255, 0) 
-    drawtemp(template2, frame, w2, h2, color)
-    color = (0, 0, 255) 
-    drawtemp(template3, frame, w3, h3,color)
-    color = (255, 0, 255) 
-    drawtemp(template4, frame, w4, h4,color)
-    color = (0, 255, 255) 
-    drawtemp(template5, frame, w5, h5,color)
-
-    
-
-    
-
-          
-
-        
-        
-      
-    # the 'q' button is set as the 
-    # quitting button you may use any 
-    # desired button of your choice 
-    result.write(frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'): 
-        break
-  
-# After the loop release the cap object 
-vid.release() 
-# Destroy all the windows 
-cv2.destroyAllWindows() 
