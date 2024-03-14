@@ -40,9 +40,10 @@ minWidth: 7
 # decrease to find small objects
 minHeight: 7
 
-dilateObject: 1
-UnDilateObject: 2
+dincreasewhite: 1
+increaseblack: 2
 bufferX: 5
 bufferY: 5
+segment: 0
 
 
