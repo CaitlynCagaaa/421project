@@ -128,6 +128,6 @@ def main():
     return
 
 config =open("g_conf.yaml", "r") 
-con =yaml.safe_load(config)
+gcon =yaml.safe_load(config)
 if __name__ == "__main__":
     main()

@@ -21,8 +21,10 @@ def find_drawer(frame, drawers, record):
 def drawer_location(modFrame, place, drawer, template, record):
   xDiff = template["X"]-place[0][0]
   yDiff = template["Y"]-place[0][1]
-  print(xDiff, yDiff)
-  drawSize = (drawer["X"],drawer["Y"], drawer["W"] -xDiff,drawer["H"] -yDiff)
+  wDiff = drawer["W"]-xDiff
+  hDiff = drawer["H"]-yDiff 
+  #print(xDiff, yDiff)
+  drawSize = (drawer["X"],drawer["Y"], wDiff,hDiff)
   print(drawSize)
   if record ==1:
     cv2.rectangle(modFrame, (drawer["X"],drawer["Y"]), (drawSize[2]+drawer["X"], drawSize[3]+drawer["Y"]), (256,256,256), 1 )
