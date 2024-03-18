@@ -4,9 +4,14 @@ from matplotlib import pyplot as plt
 import datetime;
 import math
 import json
+import drawer
+gcon =open("g_conf.yaml", "r")
 
 def update_tools_for_frames(frame, modframe, tools, errors, drawerLocation,timestamp,drawer,configuration,classifier):
     global con 
+    global onnx
+    onnx = classifier
+
     con = configuration
     drawer_segment(frame, drawerLocation)
     for tool in tools:
@@ -44,7 +49,7 @@ def calculate_location(tool,drawer,drawerLocation):
     yDiff = drawer["H"]-drawerLocation[3]
 #print(xDiff, yDiff)
     if tool['X']<=drawer['X']-xDiff:
-        toolSize = (drawer["X"]+ciel(con['bufferX']/2),tool["Y"]+ciel(con['bufferY']/2), tool["W"] - xDiff+con['bufferX'],tool["H"] -yDiff+con['bufferY'])
+        toolSize = (drawer["X"]+ceil(con['bufferX']/2),tool["Y"]+ciel(con['bufferY']/2), tool["W"] - xDiff+con['bufferX'],tool["H"] -yDiff+con['bufferY'])
     else:
          toolSize = (tool["X"]-xDiff,tool["Y"]-yDiff, tool["W"],tool["H"])
     return toolSize
@@ -68,7 +73,7 @@ def check_extra_tools(contours, errors, timeStamp, drawer,drawerLocation,frame,m
                     updatedErrors["errors"].append(error)
                     errors['error'].remove(error)
                 else:
-                  updatedErrors["errors"].append({"ID": 0, "EventType": 2, "ToolID": None, "UserID": 1, "Timestamp":timeStamp ,"Location": drawer["ID"], "X": x, "Y": y, "W": w, "H": h})  
+                  updatedErrors["errors"].append({"ID": 0, "ToolType": toolType,"EventType": 2, "ToolID": None, "UserID": 1, "Timestamp":timeStamp ,"Location": drawer["ID"], "X": x, "Y": y, "W": w, "H": h})  
     for error in errors:
        location, visible = is_visible()
        if not visible:
@@ -76,11 +81,35 @@ def check_extra_tools(contours, errors, timeStamp, drawer,drawerLocation,frame,m
 
     return updatedErrors
 def is_checked_out(image, modFrame, tool, threshold, degrees, degreesDiv, errors, timeStamp,drawerID,record):
-    return
+    foundNoTool,placeNoTool,similarityNoTool = drawer.draw_temp(tool["picno"],image, modFrame, image.shape[0], image.shape[1],(256,256,256), .8,False,1,5)
+    if foundNoTool ==False:
+        similarityNoTool =0
+    foundTool,placeTool,similarityTool = drawer.draw_temp(tool["picall"],image, modFrame, image.shape[0], image.shape[1],(256,256,256), .8,False,1,5)
+    if foundTool ==False:
+        similarityNoTool =0   
+    if similarityTool >= similarityNoTool:
+        toolType = classifier_check(onnx,image)
+        if toolType == tool["classifiertoolType"] and symbol_check(tool,image,modFrame,threshold,degrees,degreesDiv,0):
+            checkedOut =1
+        else:
+            errors["errors"].append({"ID": 0, "ToolType": toolType,"EventType": 3, "ToolID": tool["ID"], "UserID": 1, "Timestamp":timeStamp ,"Location": drawer["ID"], "X": placeTool[0,0], "Y": placeTool[0,1], "W": placeTool[1,0], "H": placeTool[1,1]})   
+            checkedOut = -1
+    else:
+        checkedOut = 0
+    return checkedOut
 def classifier_check(classifier, image):
-    return
-def symbol_check(tool, image, modFrame, threshold, degrres, degreesDiv, record):
-    return        
+    normalized_image = cv2.normalize(image, None, 0, 1, cv2.NORM_MINMAX)
+    classifier.setInput(cv2.dnn.blobFromImage(normalized_image, size=(224, 224), swapRB=False, crop=True))
+    detection = classifier.forward()
+    answer = detection.index(max(np.absolute(detection)))
+    labels= gcon.get("onnxTools")
+    return labels[answer]
+def symbol_check(tool, image, modFrame, threshold, degrees, degreesDiv, record):
+    if tool["IDAvailable"] ==False:
+        found,_,_ = drawer.draw_temp(tool["picall"],image, modFrame, image.shape[0], image.shape[1],(256,256,256), .8,record,1,5)  
+    else:
+        found =True
+    return found       
     
 
                 
