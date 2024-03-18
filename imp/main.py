@@ -28,7 +28,7 @@ def print_records(events, toolboxID):
     return
 def retrieve_drawers(toolBoxID,test):
     if test == True:
-        input("Please enter the Toolbox number for the drawer in the given video:")
+        #input("Please enter the Toolbox number for the drawer in the given video:")
         f = open('drawer0/drawer.json')
         drawers = json.load(f)
     else:
@@ -134,6 +134,8 @@ def main():
                 lastDrawer = currentDrawer
             vid.release() 
             print_records(events, 0)
+        else:
+            print("failed to open")
 
 
 
@@ -145,7 +147,7 @@ def main():
     #retrieve from database
         
    
-
+    print("done")
 
     return
 

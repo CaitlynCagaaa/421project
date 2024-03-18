@@ -1,0 +1,5 @@
+recording
+test2024-03-18 00:19:27.839980.avi
+drawer316_8.avi
+True
+Please enter the Toolbox number for the drawer in the given video:
