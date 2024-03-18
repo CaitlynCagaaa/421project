@@ -7,6 +7,9 @@ from matplotlib import pyplot as plt
 import argparse
 import drawer
 from datetime import datetime, timedelta
+import socket
+from pathlib import Path
+from jsonschema import validate
 def create_error_records(events,errors):
     for error in errors:
         events = events["events"].append({"ID": 0, "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['timestamp'] ,"Location": error['location'], "notes":error["notes"]})
@@ -26,7 +29,7 @@ def print_records(events, toolboxID):
 def retrieve_drawers(toolBoxID,test):
     if test == True:
         input("Please enter the Toolbox number for the drawer in the given video:")
-        f = open('drawer.json')
+        f = open('drawer0/drawer.json')
         drawers = json.load(f)
     else:
         print("Databsase not connected yet")
@@ -60,8 +63,27 @@ def update_tools(oldTools, newTools, events,test):
 
     return events, True
                 
-                
-        
+def wait_for_signal(hostIP,port):  
+    schema = {
+        "type" : "object",
+        "properties" : {
+             "toolbox" : {"type" : "number"},
+             "UserID" : {"type" : "number"},
+        },
+    }
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind((hostIP, port))  
+    s.listen(2)
+    conn, addr = s.accept()
+    with conn:
+        print(f"Connected by {addr}")
+        while True:
+            conn.send(b"I am alive")
+            data = conn.recv(1024)
+            if not data:
+                break
+        validate(instance=data, schema=schema)
+
     
 
 def main():
@@ -80,9 +102,9 @@ def main():
             frame_width = int(vid.get(3)) 
             frame_height = int(vid.get(4)) 
             size = (frame_width, frame_height) 
-            recordedVideo = cv2.VideoWriter( "test2" + ".avi",  
+            recordedVideo = cv2.VideoWriter( Path(args.test).stem + "record.avi",  
                          cv2.VideoWriter_fourcc(*'MJPG'), 
-                         30, size) 
+                         15, size) 
             print("test" +str(timestampStart) + ".avi")
         if vid.isOpened():
             print(args.test)
@@ -106,7 +128,7 @@ def main():
                     print("write")
                     recordedVideo.write(modFrame)
                 ret, frame = vid.read() 
-                timedel = (timestampFrame + timedelta(milliseconds= 5))-timestampFrame 
+                timedel = (timestampFrame + timedelta(milliseconds= 1000/15))-timestampFrame 
                 timestampFrame = timestampFrame +timedel
                 print(timestampFrame)
                 lastDrawer = currentDrawer

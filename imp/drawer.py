@@ -42,7 +42,7 @@ def is_open(frame,modFrame, templates,record):
      pic = cv2.imread(template["picall"])
      frame_width = pic.shape[1]
      frame_height = pic.shape[0]
-     found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,color[i], .8,record,1,10)
+     found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,color[i], .8,record,1,5)
      if found == True and similarity>similarityMax:
        placeMax = place
        similarityMax = similarity

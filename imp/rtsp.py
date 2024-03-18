@@ -4,15 +4,16 @@ import math
 import os
 os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "rtsp_transport;tcp"
 vid = cv2.VideoCapture(r'rtsp://admin:NullTerminat0r2%24@192.168.0.17/onvif1' ) 
+vid.set(cv2.CAP_PROP_BUFFERSIZE,70)
 vid.set(cv2.CAP_PROP_FPS, 10)
 frame_width = int(vid.get(3)) 
 frame_height = int(vid.get(4)) 
 x,y,w,h = 1920-1134,1080-730,1134,730
 size = (frame_width, frame_height) 
 
-result = cv2.VideoWriter(r'testrtp10.avi',  
+result = cv2.VideoWriter(r'drawer316_8.avi',  
                          cv2.VideoWriter_fourcc(*'XVID'), 
-                         15, size) 
+                         10, size) 
 i =0
 while(True): 
       

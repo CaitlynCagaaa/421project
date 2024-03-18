@@ -6,7 +6,7 @@
 grayscale: 11
 
 #how much to blur iage, is used to reduce noise, must be odd between 1 and 31
-blur: 3
+blur: 5
 
 # how is the program finding the threshold, aka how is it turning it into just white and black to find contours
 # must be one of cv2 thresholding varaibles
@@ -28,20 +28,20 @@ threshType: 0
 # the picture the bigger the value 
 # should be an interger between 0 and 256
 # do not recommend changing
-minThreshValue: 90
+minThreshValue: 80
 
 # minimum number of pixels that make up the width of an object
 # increase to remove small non-objects
 # decrease to find small objects 
-minWidth: 100
+minWidth: 40
 
 #minimum number of pixels that make up the height of an object
 # increase to remove small non-objects
 # decrease to find small objects
-minHeight: 100
+minHeight: 40
 
-dincreasewhite: 0
-increaseblack: 2
+dincreasewhite: 1
+increaseblack: 3
 bufferX: 10
 bufferY: 10
 segment: 0
