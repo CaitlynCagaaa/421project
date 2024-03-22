@@ -9,7 +9,7 @@ import drawer
 from datetime import datetime, timedelta
 import socket
 from pathlib import Path
-from jsonschema import validate
+import jsonschema 
 
 def create_error_records(events,errors):
     for error in errors:
@@ -81,10 +81,58 @@ def wait_for_signal(hostIP,port):
         while True:
             conn.send(b"I am alive")
             data = conn.recv(1024)
-            if not data:
+            if data !=None:
+                try:
+                 jsonschema.validate(instance=data, schema=schema)
+                except jsonschema.exceptions.ValidationError as err:
+                    continue
+                startTimeStamp = datetime.now()
                 break
-        validate(instance=data, schema=schema)
+            else:    
+                continue
+    
+    return data, startTimeStamp
 
+def get_footage(rtspStream, savedFootage, host, port, startTimeStamp):
+    timestampFrame =startTimeStamp
+    schema = {"type" : "object",
+             "properties" : { "stop": True}
+             }
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind((host, port))  
+    s.listen(2)
+    conn, addr = s.accept()
+    with conn:
+         data = conn.recv(1024)
+         vid = cv2.VideoCapture(rtspStream) 
+         if vid.isOpened():
+            frame_width = int(vid.get(3)) 
+            frame_height = int(vid.get(4)) 
+            size = (frame_width, frame_height) 
+            result = cv2.VideoWriter(savedFootage,  
+                         cv2.VideoWriter_fourcc(*'XVID'), 
+                         10, size) 
+            vid.set(cv2.CAP_PROP_BUFFERSIZE,70)
+            vid.set(cv2.CAP_PROP_FPS, 10)
+            while endTimeStamp ==None or timestampFrame > endTimeStamp:
+                timedel = (timestampFrame + timedelta(milliseconds= 1000/15))-timestampFrame 
+                timestampFrame = timestampFrame +timedel
+                data = conn.recv(1024)
+                if data !=None:
+                    try:
+                        jsonschema.validate(instance=data, schema=schema)
+                    except jsonschema.exceptions.ValidationError as err:
+                        continue
+                    endTimeStamp = datetime.now()
+                ret, frame = vid.read() 
+                if ret == False:
+                    continue
+    savedVideo = cv2.VideoCapture(savedFootage) 
+    return endTimeStamp, savedVideo
+                
+                    
+                    
+    
     
 
 def main():
