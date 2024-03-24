@@ -12,7 +12,7 @@ from pathlib import Path
 import jsonschema 
 
 def create_error_records(events,errors):
-    for error in errors:
+    for error in errors["errors"]:
         events = events["events"].append({"ID": 0, "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['timestamp'] ,"Location": error['location'], "notes":error["notes"]})
     updatedEvents= events
     return updatedEvents
@@ -37,10 +37,12 @@ def retrieve_drawers(toolBoxID,test):
         exit()
     return drawers
 def  retrieve_tools(drawerID,toolboxID):
-    f = open('tools.json')
+    f = open('drawer0/tools.json')
     tools = json.load(f)
-    for tool in tools:
-        tool.append({"timestamp": None, "error":0 })
+    for tool in tools["Tools"]:
+        print(tool)
+        tool["timestamp"] = None
+        tool["error"] = 0 
         print(tool)
 
     return tools
@@ -52,7 +54,7 @@ def update_events(events):
     return 0
 
 def update_tools(oldTools, newTools, events,test):
-    for oldTool,newTool in zip(oldTools,newTools):
+    for oldTool,newTool in zip(oldTools["Tools"],newTools["Tools"]):
         if oldTool['CheckedOut']!=newTool['CheckedOut']:
             if test ==False:
                 #apicall

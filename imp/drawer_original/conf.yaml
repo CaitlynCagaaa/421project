@@ -3,7 +3,7 @@
 # do not reccomend changing
 # allowed values are 6, 7, 10 and 11
 
-grayscale: 11
+grayscale: 6
 
 #how much to blur iage, is used to reduce noise, must be odd between 1 and 31
 blur: 5

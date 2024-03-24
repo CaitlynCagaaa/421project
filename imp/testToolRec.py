@@ -14,7 +14,7 @@ args = ap.parse_args()
 drawerList = main.retrieve_drawers(0,True)
 events = {"events":[]}
 errors = {"errors":[]}
-frame =cv2.open(args.test)
+frame =cv2.imread(args.test,cv2.IMREAD_UNCHANGED)
 tools = None
 drawerWasOpen =0
 lastDrawer= None
@@ -22,8 +22,8 @@ modFrame, currentDrawer, drawerSize = drawer.find_drawer(frame, drawerList,True)
 if lastDrawer==None and currentDrawer!=None:
     print(currentDrawer)
     events["events"].append({"ID": 0, "EventType": 0, "ToolID": None, "UserID": 1, "Timestamp":0 ,"Location": currentDrawer["ID"]})
-    main.retrieve_tools(currentDrawer["ID"],0)
-    dconfig = config =open("drawer0/conf.yaml", "r") 
+    tools = main.retrieve_tools(currentDrawer["ID"],0)
+    dconfig =open("drawer0/conf.yaml", "r") 
     drawerConfig =yaml.safe_load(dconfig)
 if lastDrawer!=None and currentDrawer!=lastDrawer:
     events["events"].append({"ID": 0, "EventType": 1, "ToolID": None, "UserID": 1, "Timestamp":0 ,"Location": lastDrawer["ID"]})
@@ -32,6 +32,6 @@ toolrecognition.update_tools_for_frames(frame, modFrame, tools, errors, drawerSi
 main.create_error_records(events,errors)
 main.update_tools(oldtools,tools, events, True)
 main.print_records(events,0)
-cv2.write(modFrame)
+cv2.imwrite("test.jpg",modFrame)
 lastDrawer = currentDrawer
 main.print_records(events, 0)
