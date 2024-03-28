@@ -1,7 +1,7 @@
 {"Tools": [
-{"ID": 1, "Name": "img485", "ToolType": "clamp", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1394, "Y": 1708, "W": 664, "H": 223, "picfull": "drawer0/tool_1_1.jpg", "picnull": "drawer0/tool_1_2.jpg", "Manual": true},
-{"ID": 2, "Name": "img495", "ToolType": "clamp", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1814, "Y": 1543, "W": 487, "H": 170, "picfull": "drawer0/tool_2_1.jpg", "picnull": "drawer0/tool_2_2.jpg", "Manual": false},
-{"ID": 3, "Name": "img501", "ToolType": "hammer", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1405, "Y": 1315, "W": 862, "H": 418, "picfull": "drawer0/tool_3_1.jpg", "picnull": "drawer0/tool_3_2.jpg", "Manual": true},
-{"ID": 5, "Name": "mallet", "ToolType": "mallet", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1340, "Y": 1034, "W": 901, "H": 288, "picfull": "drawer0/tool_5_1.jpg", "picnull": "drawer0/tool_5_2.jpg", "Manual": false}
+{"ID": 1, "Name": "img485", "ToolType": "Clamps", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1394, "Y": 1708, "W": 664, "H": 223, "picfull": "drawer0/tool_1_2.jpg", "picnull": "drawer0/tool_1_1.jpg", "Manual": true},
+{"ID": 2, "Name": "img495", "ToolType": "Clamps", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1814, "Y": 1543, "W": 487, "H": 170, "picfull": "drawer0/tool_2_2.jpg", "picnull": "drawer0/tool_2_1.jpg", "Manual": false},
+{"ID": 3, "Name": "img501", "ToolType": "Hammers", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1405, "Y": 1315, "W": 862, "H": 418, "picfull": "drawer0/tool_3_2.jpg", "picnull": "drawer0/tool_3_1.jpg", "Manual": true},
+{"ID": 5, "Name": "mallet", "ToolType": "Mallets", "ClassifierThinks": null, "Location": 0, "Who": null, "IDAvail": false, "IDMark": null, "CheckedOut": false, "X": 1340, "Y": 1034, "W": 901, "H": 288, "picfull": "drawer0/tool_5_2.jpg", "picnull": "drawer0/tool_5_1.jpg", "Manual": false}
 
 ]}

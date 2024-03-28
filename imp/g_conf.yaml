@@ -1,5 +1,55 @@
-threshold: .85
+#url of the apigateway server which is how the database is accessed. You cna find this by . . . .
+APIgatewayurl: ""
+#url of the multimedia file server should just be base url 
+webserverurl: ""
+#port rfid start and stop signals will be sent 
+rfidport: 80
+# IP address that will be sending the start and stop signals 
+# if empty string the program will look at all IP addresses
+rfidhost: ""
+#list of RTSP urls for the cameras attached to the toolboxes
+# the placement of the url in the list should correspond to the toolbox number
+RTSP: 
+    - ""
+#list of labels of onnx classes
+#placement in list should correspond to the valuei n the return of te onnx file 
+onnxlabels:
+  - "Philips"
+  - "Flat Head"
+  - "Crescent Wrench"
+  - "Hammers"
+  - "Ratchet"
+  - "Pliers"
+  - "Sockets"
+  - "hands"
+# list of tools that the onnx file has classes for, order does not matter
+onnxtools: 
+  - "Philips"
+  - "Flat Head"
+  - "Crescent Wrench"
+  - "Hammers"
+  - "Ratchet"
+  - "Pliers"
+  - "Sockets"
+
+#list of non-tools that onnx has classes for, order does not matter
+onnxnontools: 
+  - "hands"
+#similarity threshold for template matching with drawer symbols and the symbol check function
+thresholdsymbol: .7
+#similarity threshold for template matching with the tools
+thresholdtool: .85
+#maximum rotation to try to findd the template match clockwise and counter clockwise
 degrees: 1
-degreeDiv: 10
-#rtsp:
-#database:
+#fraction of degree to rotate ie if 10 it will rotate a tenth of a degree uand template match until a match that meets
+# the threshold is found or it has reached the mximum amount of degrees 
+# making it 0 will result in an error
+degreeDiv: 3
+#filel location of the onnx classifier 
+onnxfile: "C:/Users/caitl/421project/imp/hiline_class.onnx"
+# amount of tool that must be in frame to be considered visible 
+buffer: .2
+#how many pixels to exapns the horizontal start and end of the tool space in the images to be template matched by
+bufferx: 10
+#how many pixels to exapns the vertical start and end of the tool space in the images to be template matched by
+buffery: 10

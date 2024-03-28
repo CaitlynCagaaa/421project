@@ -12,8 +12,12 @@ from pathlib import Path
 import jsonschema 
 
 def create_error_records(events,errors):
+    print(events)
+    print(errors)
     for error in errors["errors"]:
-        events = events["events"].append({"ID": 0, "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['timestamp'] ,"Location": error['location'], "notes":error["notes"]})
+        print(error)
+        events = events["events"].append({"ID": 0, "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['Timestamp'] ,"Location": error["Location"], "notes":error["ToolType"]+ str(error["X"])+ str(error["Y"])})
+        print(events)
     updatedEvents= events
     return updatedEvents
 def print_records(events, toolboxID):
