@@ -33,7 +33,7 @@ if lastDrawer!=None and currentDrawer!=lastDrawer:
 net =  cv2.dnn.readNetFromONNX(gcon.get("onnxfile")) 
 tools, errors= toolrecognition.update_tools_for_frames(frame, modFrame, tools, errors, drawerSize,0,currentDrawer,drawerConfig,net,1)
 print(events)
-main.create_error_records(events,errors)
+#main.create_error_records(events,errors)
 main.update_tools(oldtools,tools, events, True)
 main.print_records(events,0)
 cv2.imwrite("test.jpg",modFrame)

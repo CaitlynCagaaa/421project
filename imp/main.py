@@ -10,11 +10,15 @@ from datetime import datetime, timedelta
 import socket
 from pathlib import Path
 import jsonschema 
+import toolrecognition
+import copy
 
 def create_error_records(events,errors):
     print(events)
     print(errors)
     for error in errors["errors"]:
+        if error == None:
+            continue
         print(error)
         events = events["events"].append({"ID": 0, "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['Timestamp'] ,"Location": error["Location"], "notes":error["ToolType"]+ str(error["X"])+ str(error["Y"])})
         print(events)
@@ -28,8 +32,8 @@ def print_records(events, toolboxID):
         elif event["EventType"] == 1:
             print("Closed: Toolbox " + str(toolboxID) + " Drawer "+ str(event["Location"] )+ ": " + str(event["Timestamp"]) + " " + str(event["UserID"]))
         #etc
-        elif event["EventType"] == 2:
-            print("Closed: Toolbox " + str(toolboxID) + " Drawer "+ str(event["Location"] )+ ": " + str(event["Timestamp"]) + " " + str(event["UserID"]))
+        elif event["EventType"] == 2: #<Tool identifier> <employee id> <time>  <location>
+            print("CheckOut:"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))
     return
 def retrieve_drawers(toolBoxID,test):
     if test == True:
@@ -58,15 +62,19 @@ def update_events(events):
     return 0
 
 def update_tools(oldTools, newTools, events,test):
-    for oldTool,newTool in zip(oldTools["Tools"],newTools["Tools"]):
-        if oldTool['CheckedOut']!=newTool['CheckedOut']:
-            if test ==False:
-                #apicall
-                print("database not set up yet")
-            if newTool['CheckedOut'] == True:
-                events = events["events"].append({"ID": 0, "EventType": 2, "ToolID": None, "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['location']})
-            else:
-                 events = events["events"].append({"ID": 0, "EventType": 3, "ToolID": None, "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['location']})
+    if newTools!=None and oldTools!=None:
+        print("check")
+        for oldTool,newTool in zip(oldTools["Tools"],newTools["Tools"]):
+            print(oldTool['CheckedOut'],newTool['CheckedOut'])
+            if oldTool['CheckedOut']!=newTool['CheckedOut']:
+                if test ==False:
+                    #apicall
+                    print("database not set up yet")
+                if newTool['CheckedOut'] == True:
+                 print(events)
+                 events["events"].append({"ID": 0, "EventType": 2, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
+                else:
+                 events["events"].append({"ID": 0, "EventType": 3, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
 
     return events, True
                 
@@ -167,6 +175,7 @@ def main():
             print(ret)
             drawerList = retrieve_drawers(0,True)
             events = {"events":[]}
+            errors = {"errors":[]}
             tools = None
             drawerWasOpen =0
             lastDrawer= None
@@ -176,9 +185,25 @@ def main():
                 if lastDrawer==None and currentDrawer!=None:
                     print(currentDrawer)
                     events["events"].append({"ID": 0, "EventType": 0, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": currentDrawer["ID"]})
+                    tools = retrieve_tools(currentDrawer["ID"],0)
+                    dconfig =open("drawer0/conf.yaml", "r") 
+                    drawerConfig =yaml.safe_load(dconfig)
+                    oldtools = copy.deepcopy(tools)
                 if lastDrawer!=None and currentDrawer!=lastDrawer:
                     events["events"].append({"ID": 0, "EventType": 1, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": lastDrawer["ID"]})
-
+                    create_error_records(events,errors)
+                    update_tools(oldtools,newtools, events, True)
+                    print_records(events,0)
+                    events = {"events":[]}
+                    oldtools = None
+                    newtools =None
+                    tools = None
+                    errors = {"errors":[]}
+                if currentDrawer!=None:
+                    net =  cv2.dnn.readNetFromONNX(gcon.get("onnxfile")) 
+                    print(oldtools)
+                    newtools, errors= toolrecognition.update_tools_for_frames(frame, modFrame, newtools, errors, drawerSize,timestampFrame,currentDrawer,drawerConfig,net,1)
+                    print(oldtools)
                 if args.record==1:
                     print("write")
                     recordedVideo.write(modFrame)
@@ -188,7 +213,10 @@ def main():
                 print(timestampFrame)
                 lastDrawer = currentDrawer
             vid.release() 
-            print_records(events, 0)
+            create_error_records(events,errors)
+            print(events)
+            update_tools(oldtools,newtools, events, True)
+            print_records(events,0)
         else:
             print("failed to open")
 

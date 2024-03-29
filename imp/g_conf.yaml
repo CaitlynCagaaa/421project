@@ -14,23 +14,21 @@ RTSP:
 #list of labels of onnx classes
 #placement in list should correspond to the valuei n the return of te onnx file 
 onnxlabels:
-  - "Philips"
-  - "Flat Head"
-  - "Crescent Wrench"
-  - "Hammers"
-  - "Ratchet"
-  - "Pliers"
-  - "Sockets"
-  - "hands"
+  - "crescent wrench"
+  - "hammer"
+  - "hand"
+  - "pliers"
+  - "ratchet"
+  - "screwdriver"
+  - "socket set"
 # list of tools that the onnx file has classes for, order does not matter
 onnxtools: 
-  - "Philips"
-  - "Flat Head"
-  - "Crescent Wrench"
-  - "Hammers"
-  - "Ratchet"
-  - "Pliers"
-  - "Sockets"
+  - "crescent wrench"
+  - "hammer"
+  - "pliers"
+  - "ratchet"
+  - "screwdriver"
+  - "socket set"
 
 #list of non-tools that onnx has classes for, order does not matter
 onnxnontools: 
@@ -48,7 +46,7 @@ degreeDiv: 3
 #filel location of the onnx classifier 
 onnxfile: "C:/Users/caitl/421project/imp/hiline_class.onnx"
 # amount of tool that must be in frame to be considered visible 
-buffer: .2
+buffer: 0.2
 #how many pixels to exapns the horizontal start and end of the tool space in the images to be template matched by
 bufferx: 10
 #how many pixels to exapns the vertical start and end of the tool space in the images to be template matched by

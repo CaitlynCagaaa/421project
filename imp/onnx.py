@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 onnx_model_path = "hiline_class.onnx" 
-sample_image = r"hammer/hammer11.jpg"
+sample_image = r"drawer0/tool_3_2.jpg"
  
 #The Magic:
 net =  cv2.dnn.readNetFromONNX(onnx_model_path) 

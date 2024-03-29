@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import onnx
+import imp.onnx as onnx
 import onnxruntime as ort
 
 # Load the ONNX model
