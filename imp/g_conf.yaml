@@ -34,7 +34,7 @@ onnxtools:
 onnxnontools: 
   - "hands"
 #similarity threshold for template matching with drawer symbols and the symbol check function
-thresholdsymbol: .7
+thresholdsymbol: .8
 #similarity threshold for template matching with the tools
 thresholdtool: .85
 #maximum rotation to try to findd the template match clockwise and counter clockwise
@@ -42,7 +42,7 @@ degrees: 1
 #fraction of degree to rotate ie if 10 it will rotate a tenth of a degree uand template match until a match that meets
 # the threshold is found or it has reached the mximum amount of degrees 
 # making it 0 will result in an error
-degreeDiv: 3
+degreesdiv: 2
 #filel location of the onnx classifier 
 onnxfile: "C:/Users/caitl/421project/imp/hiline_class.onnx"
 # amount of tool that must be in frame to be considered visible 

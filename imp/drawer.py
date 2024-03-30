@@ -4,6 +4,10 @@ from matplotlib import pyplot as plt
 import datetime;
 import math
 import json
+import yaml
+
+gcon =open("g_conf.yaml", "r")
+gcon =yaml.safe_load(gcon)
 
 def find_drawer(frame, drawers, record):
    #print("Enter find")
@@ -11,14 +15,14 @@ def find_drawer(frame, drawers, record):
    #print(drawers)
    for drawer in drawers:
      #print("drawer")
-     found, template, place = is_open(frame,modFrame, drawer["drawersymbols"],record)
+     found, template, place, similairty = is_open(frame,modFrame, drawer["drawersymbols"],record)
      if found:
-        drawSize = drawer_location(modFrame, place, drawer, template,record)
+        drawSize = drawer_location(modFrame, place,similairty, drawer, template,record)
         return modFrame, drawer, drawSize
       
    return modFrame, None, None
 
-def drawer_location(modFrame, place, drawer, template, record):
+def drawer_location(modFrame, place, similarirty, drawer, template, record):
   xDiff = template["X"]-place[0][0]
   yDiff = template["Y"]-place[0][1]
   wDiff = drawer["W"]-xDiff
@@ -27,7 +31,11 @@ def drawer_location(modFrame, place, drawer, template, record):
   drawSize = (drawer["X"],drawer["Y"], wDiff,hDiff)
   print(drawSize)
   if record ==1:
-    cv2.rectangle(modFrame, (drawer["X"],drawer["Y"]), (drawSize[2]+drawer["X"], drawSize[3]+drawer["Y"]), (256,256,256), 1 )
+    (wt, ht), _ = cv2.getTextSize(
+          'drawer '+ str(drawer["ID"]) +" "+ str(round(similarirty,2))+'%', cv2.FONT_HERSHEY_SIMPLEX, .002*drawSize[3], 5)
+    modFrame = cv2.rectangle(modFrame, (drawer["X"], drawer["Y"] - ht), (drawer["X"] + wt, drawer["Y"]), (255, 0,0), 3)
+    cv2.putText(modFrame, 'drawer '+ str(drawer["ID"]) +" "+ str(round(similarirty,2))+'%', (drawer["X"], drawer["Y"]),cv2.FONT_HERSHEY_SIMPLEX,.002*drawSize[3], (36,255,12), 1)
+    cv2.rectangle(modFrame, (drawer["X"],drawer["Y"]), (drawSize[2]+drawer["X"], drawSize[3]+drawer["Y"]), (256,256,256), 3)
   return drawSize
 
 
@@ -42,14 +50,17 @@ def is_open(frame,modFrame, templates,record):
      pic = cv2.imread(template["picall"])
      frame_width = pic.shape[1]
      frame_height = pic.shape[0]
-     found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,color[i], .8,record,1,5)
+     #image = frame[template["Y"]-gcon.get("buffery"):template["H"]+template["Y"]+2*gcon.get("buffery"), 0:frame.shape[1]]
+     #cv2.imshow("image",image)
+     #cv2.waitKey(0)
+     found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,color[i], gcon.get("thresholdsymbol"),record,gcon.get("degrees"),gcon.get("degreesdiv"))
      if found == True and similarity>similarityMax:
        placeMax = place
        similarityMax = similarity
        foundTemplate =template
        foundMax=found
      
-  return foundMax, foundTemplate, placeMax
+  return foundMax, foundTemplate, placeMax, similarityMax
 
 
 def rotated_rect_with_max_area(w, h, angle):
@@ -115,6 +126,7 @@ def draw_temp(template, frame,modFrame, w, h, color1, threshold, draw,degrees,de
     similarity =None
     temp = template
     x =0
+    maxPeakValue= 0
     while x <=degrees*degreeDiv:
      template =temp
    #  print(str(x) + " 1")
@@ -123,24 +135,22 @@ def draw_temp(template, frame,modFrame, w, h, color1, threshold, draw,degrees,de
      matched = cv2.matchTemplate(frame,template, cv2.TM_CCOEFF_NORMED)
      least_value, peak_value, least_coord, peak_coord = cv2.minMaxLoc(matched)
     #print(peak_value)
-     if peak_value >= threshold:
+     if peak_value >= threshold and peak_value>maxPeakValue:
+      maxPeakValue =peak_value
       found = True
       highlight_start = peak_coord
       similarity = peak_value
       highlight_end = (highlight_start[0] + w, highlight_start[1] + h)
       place =(highlight_start,highlight_end)
-      if(draw ==1):
-        cv2.rectangle(modFrame, highlight_start, highlight_end, color1, 1 )
       
-      break
-     
      x=-(x)
      if 0>=x:
         x= x-1
     template =temp
      
      
-    
+    if found ==True and draw ==1:
+      cv2.rectangle(modFrame, highlight_start, highlight_end, color1, 2 )
    # print(str(x) + "angle")
     return found, place, similarity
     

@@ -1,1414 +1,224 @@
 recording
-test2024-03-18 01:53:00.250981.avi
+test2024-03-30 04:40:03.266093.avi
 drawer316_1.avi
 True
+{'events': [], 'total': 0}
+{'errors': [], 'total': 0}
 True
 write
-2024-03-18 01:53:00.317648
+2024-03-30 04:40:03.332760
 True
 write
-2024-03-18 01:53:00.384315
+2024-03-30 04:40:03.399427
 True
 write
-2024-03-18 01:53:00.450982
+2024-03-30 04:40:03.466094
 True
 write
-2024-03-18 01:53:00.517649
+2024-03-30 04:40:03.532761
 True
 write
-2024-03-18 01:53:00.584316
+2024-03-30 04:40:03.599428
 True
 write
-2024-03-18 01:53:00.650983
+2024-03-30 04:40:03.666095
 True
 write
-2024-03-18 01:53:00.717650
+2024-03-30 04:40:03.732762
 True
 write
-2024-03-18 01:53:00.784317
+2024-03-30 04:40:03.799429
 True
 write
-2024-03-18 01:53:00.850984
+2024-03-30 04:40:03.866096
 True
 write
-2024-03-18 01:53:00.917651
+2024-03-30 04:40:03.932763
 True
 write
-2024-03-18 01:53:00.984318
+2024-03-30 04:40:03.999430
 True
 write
-2024-03-18 01:53:01.050985
+2024-03-30 04:40:04.066097
 True
 write
-2024-03-18 01:53:01.117652
+2024-03-30 04:40:04.132764
 True
 write
-2024-03-18 01:53:01.184319
+2024-03-30 04:40:04.199431
 True
 write
-2024-03-18 01:53:01.250986
+2024-03-30 04:40:04.266098
 True
 write
-2024-03-18 01:53:01.317653
+2024-03-30 04:40:04.332765
 True
 write
-2024-03-18 01:53:01.384320
+2024-03-30 04:40:04.399432
 True
 write
-2024-03-18 01:53:01.450987
+2024-03-30 04:40:04.466099
 True
 write
-2024-03-18 01:53:01.517654
+2024-03-30 04:40:04.532766
 True
 write
-2024-03-18 01:53:01.584321
+2024-03-30 04:40:04.599433
 True
 write
-2024-03-18 01:53:01.650988
+2024-03-30 04:40:04.666100
 True
 write
-2024-03-18 01:53:01.717655
+2024-03-30 04:40:04.732767
 True
 write
-2024-03-18 01:53:01.784322
+2024-03-30 04:40:04.799434
 True
 write
-2024-03-18 01:53:01.850989
+2024-03-30 04:40:04.866101
 True
 write
-2024-03-18 01:53:01.917656
+2024-03-30 04:40:04.932768
 True
 write
-2024-03-18 01:53:01.984323
+2024-03-30 04:40:04.999435
 True
 write
-2024-03-18 01:53:02.050990
+2024-03-30 04:40:05.066102
 True
 write
-2024-03-18 01:53:02.117657
+2024-03-30 04:40:05.132769
 True
 write
-2024-03-18 01:53:02.184324
+2024-03-30 04:40:05.199436
 True
 write
-2024-03-18 01:53:02.250991
+2024-03-30 04:40:05.266103
 True
 write
-2024-03-18 01:53:02.317658
+2024-03-30 04:40:05.332770
 True
 write
-2024-03-18 01:53:02.384325
+2024-03-30 04:40:05.399437
 True
 write
-2024-03-18 01:53:02.450992
-True
-write
-2024-03-18 01:53:02.517659
-True
-write
-2024-03-18 01:53:02.584326
-True
-write
-2024-03-18 01:53:02.650993
-True
-write
-2024-03-18 01:53:02.717660
-True
-write
-2024-03-18 01:53:02.784327
-True
-(1220, 519, 825, 1547)
-{'ID': 0, 'DrawerNum': 0, 'BoxNum': 0, 'X': 1220, 'Y': 519, 'W': 1147, 'H': 1518, 'picall': 'drawer0/drawer_1', 'picno': 'drawer0/drawer_2', 'drawersymbols': [{'ID': 0, 'X': 2168, 'Y': 514, 'W': 72, 'H': 66, 'picall': 'drawer0/drawer_2_symbol0.jpg'}, {'ID': 1, 'X': 2251, 'Y': 1234, 'W': 67, 'H': 69, 'picall': 'drawer0/drawer_2_symbol1.jpg'}, {'ID': 2, 'X': 2307, 'Y': 1842, 'W': 75, 'H': 85, 'picall': 'drawer0/drawer_2_symbol2.jpg'}]}
-write
-2024-03-18 01:53:02.850994
-True
-(1220, 519, 828, 1547)
-write
-2024-03-18 01:53:02.917661
-True
-write
-2024-03-18 01:53:02.984328
-True
-write
-2024-03-18 01:53:03.050995
-True
-(1220, 519, 876, 1548)
-{'ID': 0, 'DrawerNum': 0, 'BoxNum': 0, 'X': 1220, 'Y': 519, 'W': 1147, 'H': 1518, 'picall': 'drawer0/drawer_1', 'picno': 'drawer0/drawer_2', 'drawersymbols': [{'ID': 0, 'X': 2168, 'Y': 514, 'W': 72, 'H': 66, 'picall': 'drawer0/drawer_2_symbol0.jpg'}, {'ID': 1, 'X': 2251, 'Y': 1234, 'W': 67, 'H': 69, 'picall': 'drawer0/drawer_2_symbol1.jpg'}, {'ID': 2, 'X': 2307, 'Y': 1842, 'W': 75, 'H': 85, 'picall': 'drawer0/drawer_2_symbol2.jpg'}]}
-write
-2024-03-18 01:53:03.117662
-True
-(1220, 519, 891, 1546)
-write
-2024-03-18 01:53:03.184329
-True
-(1220, 519, 928, 1549)
-write
-2024-03-18 01:53:03.250996
-True
-(1220, 519, 938, 1550)
-write
-2024-03-18 01:53:03.317663
-True
-(1220, 519, 945, 1551)
-write
-2024-03-18 01:53:03.384330
-True
-(1220, 519, 937, 1546)
-write
-2024-03-18 01:53:03.450997
-True
-(1220, 519, 942, 1542)
-write
-2024-03-18 01:53:03.517664
-True
-(1220, 519, 948, 1542)
-write
-2024-03-18 01:53:03.584331
-True
-(1220, 519, 950, 1543)
-write
-2024-03-18 01:53:03.650998
-True
-(1220, 519, 951, 1542)
-write
-2024-03-18 01:53:03.717665
-True
-(1220, 519, 967, 1548)
-write
-2024-03-18 01:53:03.784332
-True
-(1220, 519, 972, 1550)
-write
-2024-03-18 01:53:03.850999
-True
-(1220, 519, 978, 1549)
-write
-2024-03-18 01:53:03.917666
-True
-(1220, 519, 974, 1535)
-write
-2024-03-18 01:53:03.984333
-True
-(1220, 519, 984, 1526)
-write
-2024-03-18 01:53:04.051000
-True
-(1220, 519, 995, 1520)
-write
-2024-03-18 01:53:04.117667
-True
-(1220, 519, 1019, 1531)
-write
-2024-03-18 01:53:04.184334
-True
-(1220, 519, 1025, 1528)
-write
-2024-03-18 01:53:04.251001
-True
-(1220, 519, 1028, 1526)
-write
-2024-03-18 01:53:04.317668
-True
-(1220, 519, 1040, 1528)
-write
-2024-03-18 01:53:04.384335
-True
-(1220, 519, 1042, 1529)
-write
-2024-03-18 01:53:04.451002
-True
-(1220, 519, 1042, 1529)
-write
-2024-03-18 01:53:04.517669
-True
-(1220, 519, 1044, 1526)
-write
-2024-03-18 01:53:04.584336
-True
-(1220, 519, 1048, 1523)
-write
-2024-03-18 01:53:04.651003
-True
-(1220, 519, 1053, 1521)
-write
-2024-03-18 01:53:04.717670
-True
-(1220, 519, 1074, 1528)
-write
-2024-03-18 01:53:04.784337
-True
-(1220, 519, 1069, 1520)
-write
-2024-03-18 01:53:04.851004
-True
-(1220, 519, 1086, 1529)
-write
-2024-03-18 01:53:04.917671
-True
-(1220, 519, 1084, 1520)
-write
-2024-03-18 01:53:04.984338
-True
-(1220, 519, 1094, 1519)
-write
-2024-03-18 01:53:05.051005
-True
-(1220, 519, 1104, 1519)
-write
-2024-03-18 01:53:05.117672
-True
-(1220, 519, 1113, 1517)
-write
-2024-03-18 01:53:05.184339
-True
-(1220, 519, 1132, 1524)
-write
-2024-03-18 01:53:05.251006
-True
-(1220, 519, 1139, 1524)
-write
-2024-03-18 01:53:05.317673
-True
-(1220, 519, 1145, 1526)
-write
-2024-03-18 01:53:05.384340
-True
-(1220, 519, 1151, 1528)
-write
-2024-03-18 01:53:05.451007
-True
-(1220, 519, 1147, 1518)
-write
-2024-03-18 01:53:05.517674
-True
-(1220, 519, 1153, 1517)
-write
-2024-03-18 01:53:05.584341
-True
-(1220, 519, 1173, 1524)
-write
-2024-03-18 01:53:05.651008
-True
-(1220, 519, 1168, 1513)
-write
-2024-03-18 01:53:05.717675
-True
-(1220, 519, 1176, 1512)
-write
-2024-03-18 01:53:05.784342
-True
-(1220, 519, 1184, 1511)
-write
-2024-03-18 01:53:05.851009
-True
-(1220, 519, 1186, 1513)
-write
-2024-03-18 01:53:05.917676
-True
-(1220, 519, 1200, 1522)
-write
-2024-03-18 01:53:05.984343
-True
-(1220, 519, 1187, 1513)
-write
-2024-03-18 01:53:06.051010
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.117677
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.184344
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.251011
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.317678
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.384345
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.451012
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.517679
-True
-(1220, 519, 1201, 1524)
-write
-2024-03-18 01:53:06.584346
-True
-(1220, 519, 1188, 1514)
-write
-2024-03-18 01:53:06.651013
-True
-(1220, 519, 1188, 1514)
-write
-2024-03-18 01:53:06.717680
-True
-(1220, 519, 1188, 1514)
-write
-2024-03-18 01:53:06.784347
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:06.851014
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:06.917681
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:06.984348
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.051015
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.117682
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.184349
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.251016
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.317683
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.384350
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.451017
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.517684
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.584351
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.651018
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.717685
-True
-(1220, 519, 1201, 1523)
-write
-2024-03-18 01:53:07.784352
-True
-(1220, 519, 1187, 1514)
-write
-2024-03-18 01:53:07.851019
-True
-(1220, 519, 1187, 1515)
-write
-2024-03-18 01:53:07.917686
-True
-(1220, 519, 1200, 1525)
-write
-2024-03-18 01:53:07.984353
-True
-(1220, 519, 1199, 1527)
-write
-2024-03-18 01:53:08.051020
-True
-(1220, 519, 1186, 1519)
-write
-2024-03-18 01:53:08.117687
-True
-(1220, 519, 1186, 1520)
-write
-2024-03-18 01:53:08.184354
-True
-(1220, 519, 1198, 1533)
-write
-2024-03-18 01:53:08.251021
-True
-(1220, 519, 1197, 1533)
-write
-2024-03-18 01:53:08.317688
-True
-(1220, 519, 1197, 1532)
-write
-2024-03-18 01:53:08.384355
-True
-(1220, 519, 1197, 1532)
-write
-2024-03-18 01:53:08.451022
-True
-(1220, 519, 1197, 1532)
-write
-2024-03-18 01:53:08.517689
-True
-(1220, 519, 1196, 1528)
-write
-2024-03-18 01:53:08.584356
-True
-(1220, 519, 1196, 1530)
-write
-2024-03-18 01:53:08.651023
-True
-(1220, 519, 1185, 1521)
-write
-2024-03-18 01:53:08.717690
-True
-(1220, 519, 1185, 1521)
-write
-2024-03-18 01:53:08.784357
-True
-(1220, 519, 1197, 1529)
-write
-2024-03-18 01:53:08.851024
-True
-(1220, 519, 1197, 1528)
-write
-2024-03-18 01:53:08.917691
-True
-(1220, 519, 1197, 1526)
-write
-2024-03-18 01:53:08.984358
-True
-(1220, 519, 1197, 1525)
-write
-2024-03-18 01:53:09.051025
-True
-(1220, 519, 1197, 1525)
-write
-2024-03-18 01:53:09.117692
-True
-(1220, 519, 1197, 1525)
-write
-2024-03-18 01:53:09.184359
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.251026
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.317693
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.384360
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.451027
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.517694
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.584361
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.651028
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.717695
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.784362
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.851029
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.917696
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:09.984363
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:10.051030
-True
-(1220, 519, 1184, 1520)
-write
-2024-03-18 01:53:10.117697
-True
-(1220, 519, 1197, 1529)
-write
-2024-03-18 01:53:10.184364
-True
-(1220, 519, 1197, 1528)
-write
-2024-03-18 01:53:10.251031
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:10.317698
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:10.384365
-True
-(1220, 519, 1197, 1528)
-write
-2024-03-18 01:53:10.451032
-True
-(1220, 519, 1197, 1528)
-write
-2024-03-18 01:53:10.517699
-True
-(1220, 519, 1197, 1528)
-write
-2024-03-18 01:53:10.584366
-True
-(1220, 519, 1197, 1528)
-write
-2024-03-18 01:53:10.651033
-True
-(1220, 519, 1197, 1528)
-write
-2024-03-18 01:53:10.717700
-True
-(1220, 519, 1184, 1520)
-write
-2024-03-18 01:53:10.784367
-True
-(1220, 519, 1197, 1527)
-write
-2024-03-18 01:53:10.851034
-True
-(1220, 519, 1184, 1520)
-write
-2024-03-18 01:53:10.917701
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:10.984368
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.051035
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.117702
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.184369
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.251036
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.317703
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.384370
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.451037
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.517704
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.584371
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.651038
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.717705
-True
-(1220, 519, 1184, 1519)
-write
-2024-03-18 01:53:11.784372
-True
-(1220, 519, 1184, 1518)
-write
-2024-03-18 01:53:11.851039
-True
-(1220, 519, 1182, 1517)
-write
-2024-03-18 01:53:11.917706
-True
-(1220, 519, 1182, 1516)
-write
-2024-03-18 01:53:11.984373
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.051040
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.117707
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.184374
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:12.251041
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:12.317708
-True
-(1220, 519, 1181, 1515)
-write
-2024-03-18 01:53:12.384375
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.451042
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.517709
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.584376
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.651043
-True
-(1220, 519, 1181, 1516)
-write
-2024-03-18 01:53:12.717710
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:12.784377
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:12.851044
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:12.917711
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:12.984378
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:13.051045
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:13.117712
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:13.184379
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:13.251046
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:13.317713
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:13.384380
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:13.451047
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:13.517714
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:13.584381
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:13.651048
-True
-(1220, 519, 1194, 1513)
-write
-2024-03-18 01:53:13.717715
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:13.784382
-True
-(1220, 519, 1194, 1513)
-write
-2024-03-18 01:53:13.851049
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:13.917716
-True
-(1220, 519, 1194, 1513)
-write
-2024-03-18 01:53:13.984383
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:14.051050
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:14.117717
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:14.184384
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:14.251051
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:14.317718
-True
-(1220, 519, 1195, 1516)
-write
-2024-03-18 01:53:14.384385
-True
-(1220, 519, 1195, 1516)
-write
-2024-03-18 01:53:14.451052
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:14.517719
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:14.584386
-True
-(1220, 519, 1195, 1516)
-write
-2024-03-18 01:53:14.651053
-True
-(1220, 519, 1195, 1516)
-write
-2024-03-18 01:53:14.717720
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:14.784387
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:14.851054
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:14.917721
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:14.984388
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.051055
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.117722
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.184389
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.251056
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.317723
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.384390
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.451057
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.517724
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.584391
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.651058
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.717725
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.784392
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.851059
-True
-(1220, 519, 1180, 1515)
-write
-2024-03-18 01:53:15.917726
-True
-(1220, 519, 1180, 1514)
-write
-2024-03-18 01:53:15.984393
-True
-(1220, 519, 1162, 1508)
-write
-2024-03-18 01:53:16.051060
-True
-(1220, 519, 1162, 1508)
-write
-2024-03-18 01:53:16.117727
-True
-(1220, 519, 1162, 1508)
-write
-2024-03-18 01:53:16.184394
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.251061
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.317728
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.384395
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.451062
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.517729
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.584396
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.651063
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.717730
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.784397
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.851064
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.917731
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:16.984398
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.051065
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.117732
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.184399
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.251066
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.317733
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.384400
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.451067
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.517734
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.584401
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.651068
-True
-(1220, 519, 1194, 1514)
-write
-2024-03-18 01:53:17.717735
-True
-(1220, 519, 1194, 1514)
-write
-2024-03-18 01:53:17.784402
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.851069
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.917736
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:17.984403
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.051070
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.117737
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.184404
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.251071
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.317738
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.384405
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.451072
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.517739
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.584406
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.651073
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.717740
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.784407
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.851074
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.917741
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:18.984408
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.051075
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.117742
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.184409
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.251076
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.317743
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.384410
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.451077
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.517744
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.584411
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.651078
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.717745
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.784412
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.851079
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.917746
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:19.984413
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.051080
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.117747
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.184414
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.251081
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.317748
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.384415
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.451082
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.517749
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.584416
-True
-(1220, 519, 1179, 1514)
-write
-2024-03-18 01:53:20.651083
-True
-(1220, 519, 1179, 1515)
-write
-2024-03-18 01:53:20.717750
-True
-(1220, 519, 1178, 1514)
-write
-2024-03-18 01:53:20.784417
-True
-(1220, 519, 1175, 1511)
-write
-2024-03-18 01:53:20.851084
-True
-(1220, 519, 1169, 1505)
-write
-2024-03-18 01:53:20.917751
-True
-(1220, 519, 1161, 1507)
-write
-2024-03-18 01:53:20.984418
-True
-write
-2024-03-18 01:53:21.051085
-True
-write
-2024-03-18 01:53:21.117752
-True
-write
-2024-03-18 01:53:21.184419
-True
-write
-2024-03-18 01:53:21.251086
-True
-write
-2024-03-18 01:53:21.317753
-True
-write
-2024-03-18 01:53:21.384420
-True
-write
-2024-03-18 01:53:21.451087
-True
-write
-2024-03-18 01:53:21.517754
-True
-write
-2024-03-18 01:53:21.584421
-True
-write
-2024-03-18 01:53:21.651088
-True
-write
-2024-03-18 01:53:21.717755
-True
-write
-2024-03-18 01:53:21.784422
-True
-write
-2024-03-18 01:53:21.851089
-True
-write
-2024-03-18 01:53:21.917756
-True
-write
-2024-03-18 01:53:21.984423
-True
-write
-2024-03-18 01:53:22.051090
-True
-write
-2024-03-18 01:53:22.117757
-True
-write
-2024-03-18 01:53:22.184424
-True
-write
-2024-03-18 01:53:22.251091
-True
-write
-2024-03-18 01:53:22.317758
-True
-write
-2024-03-18 01:53:22.384425
-True
-write
-2024-03-18 01:53:22.451092
-True
-write
-2024-03-18 01:53:22.517759
-True
-write
-2024-03-18 01:53:22.584426
-True
-write
-2024-03-18 01:53:22.651093
-True
-write
-2024-03-18 01:53:22.717760
-True
-write
-2024-03-18 01:53:22.784427
-True
-write
-2024-03-18 01:53:22.851094
-True
-write
-2024-03-18 01:53:22.917761
-True
-write
-2024-03-18 01:53:22.984428
-True
-write
-2024-03-18 01:53:23.051095
-True
-write
-2024-03-18 01:53:23.117762
-True
-write
-2024-03-18 01:53:23.184429
-True
-write
-2024-03-18 01:53:23.251096
-True
-write
-2024-03-18 01:53:23.317763
-True
-write
-2024-03-18 01:53:23.384430
-True
-write
-2024-03-18 01:53:23.451097
-True
-write
-2024-03-18 01:53:23.517764
-True
-write
-2024-03-18 01:53:23.584431
-True
-write
-2024-03-18 01:53:23.651098
-True
-write
-2024-03-18 01:53:23.717765
-True
-write
-2024-03-18 01:53:23.784432
-True
-write
-2024-03-18 01:53:23.851099
-True
-write
-2024-03-18 01:53:23.917766
-True
-write
-2024-03-18 01:53:23.984433
-True
-write
-2024-03-18 01:53:24.051100
-True
-write
-2024-03-18 01:53:24.117767
-True
-write
-2024-03-18 01:53:24.184434
-True
-write
-2024-03-18 01:53:24.251101
-True
-write
-2024-03-18 01:53:24.317768
-True
-write
-2024-03-18 01:53:24.384435
-True
-write
-2024-03-18 01:53:24.451102
-True
-write
-2024-03-18 01:53:24.517769
-True
-write
-2024-03-18 01:53:24.584436
-True
-write
-2024-03-18 01:53:24.651103
-True
-write
-2024-03-18 01:53:24.717770
-True
-write
-2024-03-18 01:53:24.784437
-True
-write
-2024-03-18 01:53:24.851104
-True
-write
-2024-03-18 01:53:24.917771
-True
-write
-2024-03-18 01:53:24.984438
-True
-write
-2024-03-18 01:53:25.051105
-True
-write
-2024-03-18 01:53:25.117772
-True
-write
-2024-03-18 01:53:25.184439
-True
-write
-2024-03-18 01:53:25.251106
-True
-write
-2024-03-18 01:53:25.317773
-True
-write
-2024-03-18 01:53:25.384440
-{'events': [{'ID': 0, 'EventType': 0, 'ToolID': None, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 18, 1, 53, 2, 784327), 'Location': 0}, {'ID': 0, 'EventType': 1, 'ToolID': None, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 18, 1, 53, 2, 917661), 'Location': 0}, {'ID': 0, 'EventType': 0, 'ToolID': None, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 18, 1, 53, 3, 50995), 'Location': 0}, {'ID': 0, 'EventType': 1, 'ToolID': None, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 18, 1, 53, 20, 984418), 'Location': 0}]}
-Opened: Toolbox 0 Drawer 0: 2024-03-18 01:53:02.784327 1
-Closed: Toolbox 0 Drawer 0: 2024-03-18 01:53:02.917661 1
-Opened: Toolbox 0 Drawer 0: 2024-03-18 01:53:03.050995 1
-Closed: Toolbox 0 Drawer 0: 2024-03-18 01:53:20.984418 1
-done
+2024-03-30 04:40:05.466104
+True
+write
+2024-03-30 04:40:05.532771
+True
+write
+2024-03-30 04:40:05.599438
+True
+write
+2024-03-30 04:40:05.666105
+True
+write
+2024-03-30 04:40:05.732772
+True
+(1320, 519, 636, 829)
+{'ID': 0, 'DrawerNum': 0, 'BoxNum': 0, 'X': 1320, 'Y': 519, 'W': 1047, 'H': 1518, 'drawerYaml': 'drawer0/drawer.json', 'picall': 'drawer0/drawer_1', 'picno': 'drawer0/drawer_2', 'drawersymbols': [{'ID': 0, 'X': 2168, 'Y': 514, 'W': 72, 'H': 66, 'picall': 'drawer0/drawer_2_symbol0.jpg'}, {'ID': 1, 'X': 2251, 'Y': 1234, 'W': 67, 'H': 69, 'picall': 'drawer0/drawer_2_symbol1.jpg'}, {'ID': 2, 'X': 2307, 'Y': 1842, 'W': 75, 'H': 85, 'picall': 'drawer0/drawer_2_symbol2.jpg'}]}
+{'ID': 1, 'Name': 'img485', 'ToolType': 'pliers', 'ClassifierThinks': 'pliers', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1394, 'Y': 1708, 'W': 664, 'H': 223, 'picfull': 'drawer0/tool_1_2.jpg', 'picnull': 'drawer0/tool_1_1.jpg', 'Manual': True}
+{'ID': 1, 'Name': 'img485', 'ToolType': 'pliers', 'ClassifierThinks': 'pliers', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1394, 'Y': 1708, 'W': 664, 'H': 223, 'picfull': 'drawer0/tool_1_2.jpg', 'picnull': 'drawer0/tool_1_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}
+{'ID': 2, 'Name': 'img495', 'ToolType': 'pliers', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1814, 'Y': 1543, 'W': 487, 'H': 170, 'picfull': 'drawer0/tool_2_2.jpg', 'picnull': 'drawer0/tool_2_1.jpg', 'Manual': False}
+{'ID': 2, 'Name': 'img495', 'ToolType': 'pliers', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1814, 'Y': 1543, 'W': 487, 'H': 170, 'picfull': 'drawer0/tool_2_2.jpg', 'picnull': 'drawer0/tool_2_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}
+{'ID': 3, 'Name': 'img501', 'ToolType': 'hammer', 'ClassifierThinks': 'hammer', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1405, 'Y': 1315, 'W': 862, 'H': 232, 'picfull': 'drawer0/tool_3_2.jpg', 'picnull': 'drawer0/tool_3_1.jpg', 'Manual': True}
+{'ID': 3, 'Name': 'img501', 'ToolType': 'hammer', 'ClassifierThinks': 'hammer', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1405, 'Y': 1315, 'W': 862, 'H': 232, 'picfull': 'drawer0/tool_3_2.jpg', 'picnull': 'drawer0/tool_3_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}
+{'ID': 5, 'Name': 'mallet', 'ToolType': 'Mallets', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1340, 'Y': 1034, 'W': 901, 'H': 288, 'picfull': 'drawer0/tool_5_2.jpg', 'picnull': 'drawer0/tool_5_1.jpg', 'Manual': False}
+{'ID': 5, 'Name': 'mallet', 'ToolType': 'Mallets', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1340, 'Y': 1034, 'W': 901, 'H': 288, 'picfull': 'drawer0/tool_5_2.jpg', 'picnull': 'drawer0/tool_5_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}
+{'Tools': [{'ID': 1, 'Name': 'img485', 'ToolType': 'pliers', 'ClassifierThinks': 'pliers', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1394, 'Y': 1708, 'W': 664, 'H': 223, 'picfull': 'drawer0/tool_1_2.jpg', 'picnull': 'drawer0/tool_1_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}, {'ID': 2, 'Name': 'img495', 'ToolType': 'pliers', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1814, 'Y': 1543, 'W': 487, 'H': 170, 'picfull': 'drawer0/tool_2_2.jpg', 'picnull': 'drawer0/tool_2_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}, {'ID': 3, 'Name': 'img501', 'ToolType': 'hammer', 'ClassifierThinks': 'hammer', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1405, 'Y': 1315, 'W': 862, 'H': 232, 'picfull': 'drawer0/tool_3_2.jpg', 'picnull': 'drawer0/tool_3_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}, {'ID': 5, 'Name': 'mallet', 'ToolType': 'Mallets', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1340, 'Y': 1034, 'W': 901, 'H': 288, 'picfull': 'drawer0/tool_5_2.jpg', 'picnull': 'drawer0/tool_5_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}]}
+411 689 1956 2058
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 1019, 253, 912)
+230736 29614.4 0.2
+1 0 223 233 84
+192 233 3
+ratchet
+0 0
+1320 0
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}], 'total': 1}
+411 689 1956 2301
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+(1403, 854, 487, 859)
+418333 16558.0 0.2
+socket set
+0 0
+1403 0
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}, {'ID': 1, 'ToolType': 'socket set', 'EventType': 4, 'ToolID': 2, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1403, 'Y': 854, 'W': 487, 'H': 859}], 'total': 2}
+411 689 1956 2267
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 626, 451, 921)
+415371 39996.8 0.2
+3 0 232 431 95
+230 431 3
+1320 21
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}, {'ID': 1, 'ToolType': 'socket set', 'EventType': 4, 'ToolID': 2, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1403, 'Y': 854, 'W': 487, 'H': 859}], 'total': 2}
+411 689 1956 2241
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 345, 490, 977)
+478730 51897.600000000006 0.2
+5 0 288 470 30
+288 470 3
+screwdriver
+0 0
+1320 0
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}, {'ID': 1, 'ToolType': 'socket set', 'EventType': 4, 'ToolID': 2, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1403, 'Y': 854, 'W': 487, 'H': 859}, {'ID': 2, 'ToolType': 'screwdriver', 'EventType': 4, 'ToolID': 5, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 345, 'W': 490, 'H': 977}], 'total': 3}
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}, {'ID': 1, 'ToolType': 'socket set', 'EventType': 4, 'ToolID': 2, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1403, 'Y': 854, 'W': 487, 'H': 859}, {'ID': 2, 'ToolType': 'screwdriver', 'EventType': 4, 'ToolID': 5, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 345, 'W': 490, 'H': 977}], 'total': 3}
+411 689 1956 1573
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 330, -158, 1601)
+-252958 46147.200000000004 0.2
+411 689 1956 1890
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 165, 76, 1548)
+117648 83666.6 0.2
+411 689 1956 1810
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, -344, 79, 1666)
+131614 95746.0 0.2
+{'Tools': [{'ID': 1, 'Name': 'img485', 'ToolType': 'pliers', 'ClassifierThinks': 'pliers', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1394, 'Y': 1708, 'W': 664, 'H': 223, 'picfull': 'drawer0/tool_1_2.jpg', 'picnull': 'drawer0/tool_1_1.jpg', 'Manual': True, 'timestamp': None, 'error': 1}, {'ID': 2, 'Name': 'img495', 'ToolType': 'pliers', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1814, 'Y': 1543, 'W': 487, 'H': 170, 'picfull': 'drawer0/tool_2_2.jpg', 'picnull': 'drawer0/tool_2_1.jpg', 'Manual': False, 'timestamp': None, 'error': 1}, {'ID': 3, 'Name': 'img501', 'ToolType': 'hammer', 'ClassifierThinks': 'hammer', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': True, 'X': 1405, 'Y': 1315, 'W': 862, 'H': 232, 'picfull': 'drawer0/tool_3_2.jpg', 'picnull': 'drawer0/tool_3_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}, {'ID': 5, 'Name': 'mallet', 'ToolType': 'Mallets', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1340, 'Y': 1034, 'W': 901, 'H': 288, 'picfull': 'drawer0/tool_5_2.jpg', 'picnull': 'drawer0/tool_5_1.jpg', 'Manual': False, 'timestamp': None, 'error': 1}]}
+{'Tools': [{'ID': 1, 'Name': 'img485', 'ToolType': 'pliers', 'ClassifierThinks': 'pliers', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1394, 'Y': 1708, 'W': 664, 'H': 223, 'picfull': 'drawer0/tool_1_2.jpg', 'picnull': 'drawer0/tool_1_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}, {'ID': 2, 'Name': 'img495', 'ToolType': 'pliers', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1814, 'Y': 1543, 'W': 487, 'H': 170, 'picfull': 'drawer0/tool_2_2.jpg', 'picnull': 'drawer0/tool_2_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}, {'ID': 3, 'Name': 'img501', 'ToolType': 'hammer', 'ClassifierThinks': 'hammer', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1405, 'Y': 1315, 'W': 862, 'H': 232, 'picfull': 'drawer0/tool_3_2.jpg', 'picnull': 'drawer0/tool_3_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}, {'ID': 5, 'Name': 'mallet', 'ToolType': 'Mallets', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1340, 'Y': 1034, 'W': 901, 'H': 288, 'picfull': 'drawer0/tool_5_2.jpg', 'picnull': 'drawer0/tool_5_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}]}
+write
+2024-03-30 04:40:05.799439
+True
+(1320, 519, 638, 829)
+{'Tools': [{'ID': 1, 'Name': 'img485', 'ToolType': 'pliers', 'ClassifierThinks': 'pliers', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1394, 'Y': 1708, 'W': 664, 'H': 223, 'picfull': 'drawer0/tool_1_2.jpg', 'picnull': 'drawer0/tool_1_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}, {'ID': 2, 'Name': 'img495', 'ToolType': 'pliers', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1814, 'Y': 1543, 'W': 487, 'H': 170, 'picfull': 'drawer0/tool_2_2.jpg', 'picnull': 'drawer0/tool_2_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}, {'ID': 3, 'Name': 'img501', 'ToolType': 'hammer', 'ClassifierThinks': 'hammer', 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1405, 'Y': 1315, 'W': 862, 'H': 232, 'picfull': 'drawer0/tool_3_2.jpg', 'picnull': 'drawer0/tool_3_1.jpg', 'Manual': True, 'timestamp': None, 'error': 0}, {'ID': 5, 'Name': 'mallet', 'ToolType': 'Mallets', 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False, 'IDMark': None, 'CheckedOut': False, 'X': 1340, 'Y': 1034, 'W': 901, 'H': 288, 'picfull': 'drawer0/tool_5_2.jpg', 'picnull': 'drawer0/tool_5_1.jpg', 'Manual': False, 'timestamp': None, 'error': 0}]}
+409 689 1958 2058
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 1019, 255, 912)
+232560 29614.4 0.2
+1 0 223 235 84
+192 235 3
+ratchet
+0 0
+1320 0
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}], 'total': 3}
+409 689 1958 2301
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+(1405, 854, 487, 859)
+418333 16558.0 0.2
+socket set
+0 0
+1405 0
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}], 'total': 3}
+409 689 1958 2267
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 626, 453, 921)
+417213 39996.8 0.2
+3 0 232 433 95
+230 433 3
+1320 22
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}], 'total': 3}
+409 689 1958 2241
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+(1320, 345, 492, 977)
+480684 51897.600000000006 0.2
+5 0 288 472 30
+288 472 3
+socket set
+0 0
+1320 0
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}], 'total': 3}
+{'errors': [{'ID': 0, 'ToolType': 'ratchet', 'EventType': 4, 'ToolID': 1, 'UserID': 1, 'Timestamp': datetime.datetime(2024, 3, 30, 4, 40, 5, 732772), 'Location': 0, 'X': 1320, 'Y': 1019, 'W': 253, 'H': 912}], 'total': 3}
+socket set
+tess socket set

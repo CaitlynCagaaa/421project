@@ -20,7 +20,10 @@ def create_error_records(events,errors):
         if error == None:
             continue
         print(error)
-        events = events["events"].append({"ID": 0, "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['Timestamp'] ,"Location": error["Location"], "notes":error["ToolType"]+ str(error["X"])+ str(error["Y"])})
+        print(events)
+        events["events"].append({"ID": events["total"], "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['Timestamp'] ,"Location": error["Location"], "notes":error["ToolType"]+ str(error["X"])+ str(error["Y"])})
+        print(events["total"])
+        events["total"] = events["total"]+1
         print(events)
     updatedEvents= events
     return updatedEvents
@@ -34,6 +37,14 @@ def print_records(events, toolboxID):
         #etc
         elif event["EventType"] == 2: #<Tool identifier> <employee id> <time>  <location>
             print("CheckOut:"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))
+        elif event["EventType"] == 3:   
+            print("CheckIn:"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))  
+        elif event["EventType"] == 4:  #<error type> <tool identifier> <employee id> <time> <location> 
+            print("error:"  +"wrong tool" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))
+        elif event["EventType"] == 5:   
+            print("error:"  +"extra tool" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))
+        elif event["EventType"] == 6:   
+            print("error:"  + "runtime error" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))      
     return
 def retrieve_drawers(toolBoxID,test):
     if test == True:
@@ -72,10 +83,10 @@ def update_tools(oldTools, newTools, events,test):
                     print("database not set up yet")
                 if newTool['CheckedOut'] == True:
                  print(events)
-                 events["events"].append({"ID": 0, "EventType": 2, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
+                 events["events"].append({"ID": events["total"], "EventType": 2, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
                 else:
-                 events["events"].append({"ID": 0, "EventType": 3, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
-
+                 events["events"].append({"ID": events["total"], "EventType": 3, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
+                events["total"] = events["total"]+1
     return events, True
                 
 def wait_for_signal(hostIP,port):  
@@ -128,19 +139,23 @@ def get_footage(rtspStream, savedFootage, host, port, startTimeStamp):
                          10, size) 
             vid.set(cv2.CAP_PROP_BUFFERSIZE,70)
             vid.set(cv2.CAP_PROP_FPS, 10)
+            stopNotRecv = True
             while endTimeStamp ==None or timestampFrame > endTimeStamp:
                 timedel = (timestampFrame + timedelta(milliseconds= 1000/15))-timestampFrame 
                 timestampFrame = timestampFrame +timedel
-                data = conn.recv(1024)
-                if data !=None:
-                    try:
-                        jsonschema.validate(instance=data, schema=schema)
-                    except jsonschema.exceptions.ValidationError as err:
-                        continue
-                    endTimeStamp = datetime.now()
+                if stopNotRecv:
+                    data = conn.recv(1024)
+                    if data !=None:
+                        try:
+                            jsonschema.validate(instance=data, schema=schema)
+                        except jsonschema.exceptions.ValidationError as err:
+                            continue
+                        endTimeStamp = datetime.now()
+                        stopNotRecv = False
                 ret, frame = vid.read() 
                 if ret == False:
                     continue
+                result.write(frame)
     savedVideo = cv2.VideoCapture(savedFootage) 
     return endTimeStamp, savedVideo
                 
@@ -174,8 +189,11 @@ def main():
             ret, frame = vid.read()
             print(ret)
             drawerList = retrieve_drawers(0,True)
-            events = {"events":[]}
-            errors = {"errors":[]}
+            events = {"events":[],"total": 0}
+            print(events)
+            errors = {"errors":[], "total": 0}
+            print(errors)
+            cv2.waitKey(0)
             tools = None
             drawerWasOpen =0
             lastDrawer= None
@@ -184,21 +202,24 @@ def main():
                 modFrame, currentDrawer, drawerSize = drawer.find_drawer(frame, drawerList,args.record)
                 if lastDrawer==None and currentDrawer!=None:
                     print(currentDrawer)
-                    events["events"].append({"ID": 0, "EventType": 0, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": currentDrawer["ID"]})
+                    events["events"].append({"ID": events["total"], "EventType": 0, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": currentDrawer["ID"]})
+                    events["total"] =events["total"]+1
                     tools = retrieve_tools(currentDrawer["ID"],0)
                     dconfig =open("drawer0/conf.yaml", "r") 
                     drawerConfig =yaml.safe_load(dconfig)
                     oldtools = copy.deepcopy(tools)
+                    newtools = copy.deepcopy(tools)
                 if lastDrawer!=None and currentDrawer!=lastDrawer:
-                    events["events"].append({"ID": 0, "EventType": 1, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": lastDrawer["ID"]})
+                    events["events"].append({"ID": events["total"], "EventType": 1, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": lastDrawer["ID"]})
+                    events["total"] =events["total"]+1
                     create_error_records(events,errors)
                     update_tools(oldtools,newtools, events, True)
                     print_records(events,0)
-                    events = {"events":[]}
+                    events = {"events":[],"total": events["total"]}
                     oldtools = None
                     newtools =None
                     tools = None
-                    errors = {"errors":[]}
+                    errors = {"errors":[],"total": errors["total"]}
                 if currentDrawer!=None:
                     net =  cv2.dnn.readNetFromONNX(gcon.get("onnxfile")) 
                     print(oldtools)
@@ -218,18 +239,12 @@ def main():
             update_tools(oldtools,newtools, events, True)
             print_records(events,0)
         else:
-            print("failed to open")
-
-
-
-
-            
+            print("failed to open")        
     else:
-        print(' no ')
-    
+         data, startTimeStamp = wait_for_signal(gcon.get("rfidhost"),gcon.get("rfidport")) 
+         rtsp = gcon.get("RTSP")
+         endTimeStamp, savedVideo =get_footage(rtsp[data["toolbox"]],"temp"+ str(data["toolbox"])+".avi", gcon.get("rfidhost"),gcon.get("rfidport"), startTimeStamp) 
     #retrieve from database
-        
-   
     print("done")
 
     return
