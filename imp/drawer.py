@@ -28,14 +28,17 @@ def drawer_location(modFrame, place, similarirty, drawer, template, record):
   wDiff = drawer["W"]-xDiff
   hDiff = drawer["H"]-yDiff 
   #print(xDiff, yDiff)
+  
   drawSize = (drawer["X"],drawer["Y"], wDiff,hDiff)
-  print(drawSize)
+  #print(drawSize)
   if record ==1:
     (wt, ht), _ = cv2.getTextSize(
           'drawer '+ str(drawer["ID"]) +" "+ str(round(similarirty,2))+'%', cv2.FONT_HERSHEY_SIMPLEX, .002*drawSize[3], 5)
-    modFrame = cv2.rectangle(modFrame, (drawer["X"], drawer["Y"] - ht), (drawer["X"] + wt, drawer["Y"]), (255, 0,0), 3)
-    cv2.putText(modFrame, 'drawer '+ str(drawer["ID"]) +" "+ str(round(similarirty,2))+'%', (drawer["X"], drawer["Y"]),cv2.FONT_HERSHEY_SIMPLEX,.002*drawSize[3], (36,255,12), 1)
-    cv2.rectangle(modFrame, (drawer["X"],drawer["Y"]), (drawSize[2]+drawer["X"], drawSize[3]+drawer["Y"]), (256,256,256), 3)
+    modFrame = cv2.rectangle(modFrame, (drawSize[0], drawSize[1] - ht), (drawSize[0] + wt, drawSize[1]), (255, 0,0), 3)
+    cv2.putText(modFrame, 'drawer '+ str(drawer["ID"]) +" "+ str(round(similarirty,2))+'%', (drawSize[0], drawSize[1]),cv2.FONT_HERSHEY_SIMPLEX,.002*drawSize[3], (36,255,12), 1)
+    cv2.rectangle(modFrame, (drawSize[0],drawSize[1]), (drawSize[2]+drawSize[0], drawSize[3]+drawSize[1]), (256,256,256), 3)
+    cv2.imwrite("drawer.jpg",modFrame)
+    #cv2.waitKey(0)
   return drawSize
 
 
@@ -54,11 +57,17 @@ def is_open(frame,modFrame, templates,record):
      #cv2.imshow("image",image)
      #cv2.waitKey(0)
      found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,color[i], gcon.get("thresholdsymbol"),record,gcon.get("degrees"),gcon.get("degreesdiv"))
-     if found == True and similarity>similarityMax:
+     if found == True and similarity>similarityMax and template["Y"] -place[0][1] < gcon.get("buffery")*30:
        placeMax = place
        similarityMax = similarity
        foundTemplate =template
        foundMax=found
+     if record ==1 and found ==True :
+        text = str(template["ID"]) + " "+ str(similarity) +" "+ str(template["Y"] -place[0][1])
+        (wt, ht), _ = cv2.getTextSize(
+         text, cv2.FONT_HERSHEY_SIMPLEX, .005*(place[1][0]-place[0][0]), 5)
+        modFrame = cv2.rectangle(modFrame, (place[0][0], place[0][1] - ht), (place[0][0] + wt, place[0][1]), (255, 0,0), 3)
+        cv2.putText(modFrame, text, (place[0][0], place[0][1]),cv2.FONT_HERSHEY_SIMPLEX,.005*(place[1][0]-place[0][0]), (36,255,12), 3)
      
   return foundMax, foundTemplate, placeMax, similarityMax
 
@@ -123,23 +132,25 @@ def rotate_bound(image, angle):
 def draw_temp(template, frame,modFrame, w, h, color1, threshold, draw,degrees,degreeDiv):
     found = False
     place =None
-    similarity =None
+    similarity =0
     temp = template
     x =0
     maxPeakValue= 0
     while x <=degrees*degreeDiv:
      template =temp
    #  print(str(x) + " 1")
-     template = rotate_max_area(template, x/degreeDiv)
+     if x!=0:
+        template = rotate_max_area(template, x/degreeDiv)
      #cv2.imshow("temp", template)
      matched = cv2.matchTemplate(frame,template, cv2.TM_CCOEFF_NORMED)
      least_value, peak_value, least_coord, peak_coord = cv2.minMaxLoc(matched)
     #print(peak_value)
-     if peak_value >= threshold and peak_value>maxPeakValue:
+     if peak_value>maxPeakValue:
+        similarity = peak_value
+     if peak_value >= threshold:
       maxPeakValue =peak_value
       found = True
       highlight_start = peak_coord
-      similarity = peak_value
       highlight_end = (highlight_start[0] + w, highlight_start[1] + h)
       place =(highlight_start,highlight_end)
       

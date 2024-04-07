@@ -22,11 +22,11 @@ drawerWasOpen =0
 lastDrawer= None
 modFrame, currentDrawer, drawerSize = drawer.find_drawer(frame, drawerList,True)
 if lastDrawer==None and currentDrawer!=None:
-    print(currentDrawer)
+    #print(currentDrawer)
     events["events"].append({"ID": events["total"], "EventType": 0, "ToolID": None, "UserID": 1, "Timestamp":0 ,"Location": currentDrawer["ID"]})
     events["total"] =events["total"]+1
     tools = main.retrieve_tools(currentDrawer["ID"],0)
-    dconfig =open("drawer0/conf.yaml", "r") 
+    dconfig =open("drawer2/conf.yaml", "r") 
     drawerConfig =yaml.safe_load(dconfig)
     oldtools= tools.copy()
 if lastDrawer!=None and currentDrawer!=lastDrawer:
@@ -34,7 +34,7 @@ if lastDrawer!=None and currentDrawer!=lastDrawer:
     events["total"] =events["total"]+1
 net =  cv2.dnn.readNetFromONNX(gcon.get("onnxfile")) 
 tools, errors= toolrecognition.update_tools_for_frames(frame, modFrame, tools, errors, drawerSize,0,currentDrawer,drawerConfig,net,1)
-print(events)
+#print(events)
 #main.create_error_records(events,errors)
 main.update_tools(oldtools,tools, events, True)
 main.print_records(events,0)

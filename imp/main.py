@@ -14,21 +14,21 @@ import toolrecognition
 import copy
 
 def create_error_records(events,errors):
-    print(events)
-    print(errors)
+    #print(events)
+    #print(errors)
     for error in errors["errors"]:
         if error == None:
             continue
-        print(error)
-        print(events)
+        #print(error)
+        #print(events)
         events["events"].append({"ID": events["total"], "EventType": error["EventType"], "ToolID": error["ToolID"], "UserID": error["UserID"], "Timestamp":error['Timestamp'] ,"Location": error["Location"], "notes":error["ToolType"]+ str(error["X"])+ str(error["Y"])})
-        print(events["total"])
+        #print(events["total"])
         events["total"] = events["total"]+1
-        print(events)
+        #print(events)
     updatedEvents= events
     return updatedEvents
 def print_records(events, toolboxID):
-    print(events)
+    #print(events)
     for event in events["events"]:
         if event["EventType"] == 0:
             print("Opened: Toolbox " + str(toolboxID) + " Drawer "+ str(event["Location"]) + ": " + str(event["Timestamp"]) + " " + str(event["UserID"]))
@@ -59,10 +59,10 @@ def  retrieve_tools(drawerID,toolboxID):
     f = open('drawer0/tools.json')
     tools = json.load(f)
     for tool in tools["Tools"]:
-        print(tool)
+        #print(tool)
         tool["timestamp"] = None
         tool["error"] = 0 
-        print(tool)
+        #print(tool)
 
     return tools
 
@@ -74,15 +74,15 @@ def update_events(events):
 
 def update_tools(oldTools, newTools, events,test):
     if newTools!=None and oldTools!=None:
-        print("check")
+        #print("check")
         for oldTool,newTool in zip(oldTools["Tools"],newTools["Tools"]):
-            print(oldTool['CheckedOut'],newTool['CheckedOut'])
+            #print(oldTool['CheckedOut'],newTool['CheckedOut'])
             if oldTool['CheckedOut']!=newTool['CheckedOut']:
                 if test ==False:
                     #apicall
                     print("database not set up yet")
                 if newTool['CheckedOut'] == True:
-                 print(events)
+                 #print(events)
                  events["events"].append({"ID": events["total"], "EventType": 2, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
                 else:
                  events["events"].append({"ID": events["total"], "EventType": 3, "ToolID": newTool['ID'], "UserID": 1, "Timestamp":newTool['timestamp'] ,"Location": newTool['Location']})
@@ -156,6 +156,8 @@ def get_footage(rtspStream, savedFootage, host, port, startTimeStamp):
                 if ret == False:
                     continue
                 result.write(frame)
+         else:
+             raise RuntimeError("unabple to open RTSP stream " + rtspStream )
     savedVideo = cv2.VideoCapture(savedFootage) 
     return endTimeStamp, savedVideo
                 
@@ -176,44 +178,44 @@ def main():
     if args.test!=None:
         vid = cv2.VideoCapture(args.test) 
         if args.record:
-            print("recording")
+            #print("recording")
             frame_width = int(vid.get(3)) 
             frame_height = int(vid.get(4)) 
             size = (frame_width, frame_height) 
             recordedVideo = cv2.VideoWriter( Path(args.test).stem + "record.avi",  
                          cv2.VideoWriter_fourcc(*'MJPG'), 
                          15, size) 
-            print("test" +str(timestampStart) + ".avi")
+            #print("test" +str(timestampStart) + ".avi")
         if vid.isOpened():
             print(args.test)
             ret, frame = vid.read()
             print(ret)
             drawerList = retrieve_drawers(0,True)
             events = {"events":[],"total": 0}
-            print(events)
+            #print(events)
             errors = {"errors":[], "total": 0}
-            print(errors)
+            #print(errors)
             cv2.waitKey(0)
             tools = None
             drawerWasOpen =0
             lastDrawer= None
             while(ret):
-                print(ret)
+                #print(ret)
                 modFrame, currentDrawer, drawerSize = drawer.find_drawer(frame, drawerList,args.record)
                 if lastDrawer==None and currentDrawer!=None:
-                    print(currentDrawer)
+                    #print(currentDrawer)
                     events["events"].append({"ID": events["total"], "EventType": 0, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": currentDrawer["ID"]})
                     events["total"] =events["total"]+1
                     tools = retrieve_tools(currentDrawer["ID"],0)
-                    dconfig =open("drawer0/conf.yaml", "r") 
+                    dconfig =open(currentDrawer["drawerYaml"], "r") 
                     drawerConfig =yaml.safe_load(dconfig)
                     oldtools = copy.deepcopy(tools)
                     newtools = copy.deepcopy(tools)
                 if lastDrawer!=None and currentDrawer!=lastDrawer:
-                    events["events"].append({"ID": events["total"], "EventType": 1, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": lastDrawer["ID"]})
-                    events["total"] =events["total"]+1
                     create_error_records(events,errors)
                     update_tools(oldtools,newtools, events, True)
+                    events["events"].append({"ID": events["total"], "EventType": 1, "ToolID": None, "UserID": 1, "Timestamp":timestampFrame ,"Location": lastDrawer["ID"]})
+                    events["total"] =events["total"]+1
                     print_records(events,0)
                     events = {"events":[],"total": events["total"]}
                     oldtools = None
@@ -222,20 +224,20 @@ def main():
                     errors = {"errors":[],"total": errors["total"]}
                 if currentDrawer!=None:
                     net =  cv2.dnn.readNetFromONNX(gcon.get("onnxfile")) 
-                    print(oldtools)
+                    #print(oldtools)
                     newtools, errors= toolrecognition.update_tools_for_frames(frame, modFrame, newtools, errors, drawerSize,timestampFrame,currentDrawer,drawerConfig,net,1)
-                    print(oldtools)
+                    #print(oldtools)
                 if args.record==1:
-                    print("write")
+                    #print("write")
                     recordedVideo.write(modFrame)
                 ret, frame = vid.read() 
                 timedel = (timestampFrame + timedelta(milliseconds= 1000/15))-timestampFrame 
                 timestampFrame = timestampFrame +timedel
-                print(timestampFrame)
+                #print(timestampFrame)
                 lastDrawer = currentDrawer
             vid.release() 
             create_error_records(events,errors)
-            print(events)
+            #print(events)
             update_tools(oldtools,newtools, events, True)
             print_records(events,0)
         else:
@@ -245,7 +247,7 @@ def main():
          rtsp = gcon.get("RTSP")
          endTimeStamp, savedVideo =get_footage(rtsp[data["toolbox"]],"temp"+ str(data["toolbox"])+".avi", gcon.get("rfidhost"),gcon.get("rfidport"), startTimeStamp) 
     #retrieve from database
-    print("done")
+    #print("done")
 
     return
 
