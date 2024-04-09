@@ -3,7 +3,7 @@ APIgatewayurl: ""
 #url of the multimedia file server should just be base url 
 webserverurl: ""
 #port rfid start and stop signals will be sent 
-rfidport: 80
+rfidport: 65432
 # IP address that will be sending the start and stop signals 
 # if empty string the program will look at all IP addresses
 rfidhost: ""
@@ -52,11 +52,11 @@ thresholdsymbol: .8
 #similarity threshold for template matching with the tools
 thresholdtool: .7
 #maximum rotation to try to findd the template match clockwise and counter clockwise
-degrees: 2
+degrees: 0
 #fraction of degree to rotate ie if 10 it will rotate a tenth of a degree uand template match until a match that meets
 # the threshold is found or it has reached the mximum amount of degrees 
 # making it 0 will result in an error
-degreesdiv: 4
+degreesdiv: 1
 #filel location of the onnx classifier 
 onnxfile: "C:/Users/caitl/421project/imp/hiline_class.onnx"
 # amount of tool that must be in frame to be considered visible 
@@ -68,3 +68,4 @@ buffery: 10
 #ignore result of onnx file not matching threshold
 thresholdignoreonnx: .85
 thresholdadd: .1
+multfordrawersymbolbuffer: 20

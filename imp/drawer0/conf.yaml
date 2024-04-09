@@ -45,5 +45,6 @@ increaseblack: 3
 bufferX: 10
 bufferY: 10
 segment: 0
+symbolbuffer: .8
 
 

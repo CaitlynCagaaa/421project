@@ -57,7 +57,7 @@ def is_open(frame,modFrame, templates,record):
      #cv2.imshow("image",image)
      #cv2.waitKey(0)
      found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,color[i], gcon.get("thresholdsymbol"),record,gcon.get("degrees"),gcon.get("degreesdiv"))
-     if found == True and similarity>similarityMax and template["Y"] -place[0][1] < gcon.get("buffery")*30:
+     if found == True and similarity>similarityMax and template["Y"] -place[0][1] < gcon.get("buffery")*gcon.get("multfordrawersymbolbuffer"):
        placeMax = place
        similarityMax = similarity
        foundTemplate =template
@@ -65,9 +65,9 @@ def is_open(frame,modFrame, templates,record):
      if record ==1 and found ==True :
         text = str(template["ID"]) + " "+ str(similarity) +" "+ str(template["Y"] -place[0][1])
         (wt, ht), _ = cv2.getTextSize(
-         text, cv2.FONT_HERSHEY_SIMPLEX, .005*(place[1][0]-place[0][0]), 5)
+         text, cv2.FONT_HERSHEY_SIMPLEX, .005*(place[1][0]-place[0][0]), 2)
         modFrame = cv2.rectangle(modFrame, (place[0][0], place[0][1] - ht), (place[0][0] + wt, place[0][1]), (255, 0,0), 3)
-        cv2.putText(modFrame, text, (place[0][0], place[0][1]),cv2.FONT_HERSHEY_SIMPLEX,.005*(place[1][0]-place[0][0]), (36,255,12), 3)
+        cv2.putText(modFrame, text, (place[0][0], place[0][1]),cv2.FONT_HERSHEY_SIMPLEX,.005*(place[1][0]-place[0][0]), (36,255,12), 1)
      
   return foundMax, foundTemplate, placeMax, similarityMax
 
@@ -142,7 +142,19 @@ def draw_temp(template, frame,modFrame, w, h, color1, threshold, draw,degrees,de
      if x!=0:
         template = rotate_max_area(template, x/degreeDiv)
      #cv2.imshow("temp", template)
-     matched = cv2.matchTemplate(frame,template, cv2.TM_CCOEFF_NORMED)
+     
+     if template.shape[0] >= frame.shape[0]:
+        template[0:frame.shape[0]-1, 0:template.shape[1]]
+     if template.shape[1] >= frame.shape[1]:
+        template[0:template.shape[0], 0:frame.shape[1]-1]
+     try:
+      matched = cv2.matchTemplate(frame,template, cv2.TM_CCOEFF_NORMED)
+     except cv2.error:
+        x=-(x)
+        if 0>=x:
+          x= x-1
+        template =temp
+        continue
      least_value, peak_value, least_coord, peak_coord = cv2.minMaxLoc(matched)
     #print(peak_value)
      if peak_value>maxPeakValue:

@@ -25,13 +25,15 @@ def update_tools_for_frames(frame, modframe, tools, errors, drawerLocation,times
         if visible:
             countours =remove_from_contours(countours, toolLocation,drawerLocation)
             crop = frame[toolLocation[1]-gcon.get("buffery"):toolLocation[3]+toolLocation[1]+2*gcon.get("buffery"), toolLocation[0]-gcon.get("bufferx"):toolLocation[2]+2*gcon.get("bufferx")+toolLocation[0]].copy()
-            status = is_checked_out(crop,modframe,tool,toolLocation,gcon.get("thresholdtool"),gcon.get("thresholdsymbol"),gcon.get("degrees"),gcon.get("degreesdiv"),errors,timestamp,drawer["ID"],con.get("symbolbuffer"),record)
-            #print(errors)
-            if (tool['CheckedOut'] == True and status == 1) or  (tool['CheckedOut'] == False and status == 0):
-                tool['CheckedOut'] = not tool['CheckedOut']
-                tool['error'] = 0
-            elif status == -1:
-                tool['error'] = 1
+            if crop.shape[0] >0 and crop.shape[1] >0: # add error for confusing  symbols and/or difference in input
+                status = is_checked_out(crop,modframe,tool,toolLocation,gcon.get("thresholdtool"),gcon.get("thresholdsymbol"),gcon.get("degrees"),gcon.get("degreesdiv"),errors,timestamp,drawer["ID"],con.get("symbolbuffer"),record)
+                #print(errors)
+                if (tool['CheckedOut'] == True and status == 1) or  (tool['CheckedOut'] == False and status == 0):
+                    tool['CheckedOut'] = not tool['CheckedOut']
+                    tool['error'] = 0
+                    tool["timestamp"] = timestamp
+                elif status == -1:
+                    tool['error'] = 1
     updatedErrors = check_extra_tools(updatedTools,countours, errors, timestamp, drawer,drawerLocation,frame,modframe, onnx, record)
     
     #print(updatedTools)

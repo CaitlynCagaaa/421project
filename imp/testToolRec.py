@@ -26,7 +26,7 @@ if lastDrawer==None and currentDrawer!=None:
     events["events"].append({"ID": events["total"], "EventType": 0, "ToolID": None, "UserID": 1, "Timestamp":0 ,"Location": currentDrawer["ID"]})
     events["total"] =events["total"]+1
     tools = main.retrieve_tools(currentDrawer["ID"],0)
-    dconfig =open("drawer2/conf.yaml", "r") 
+    dconfig =open("drawer0/conf.yaml", "r") 
     drawerConfig =yaml.safe_load(dconfig)
     oldtools= tools.copy()
 if lastDrawer!=None and currentDrawer!=lastDrawer:

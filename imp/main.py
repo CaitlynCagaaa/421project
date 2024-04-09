@@ -45,18 +45,22 @@ def print_records(events, toolboxID):
             print("error:"  +"extra tool" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))
         elif event["EventType"] == 6:   
             print("error:"  + "runtime error" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))      
+        elif event["EventType"] == 7:
+            print("login")
+        elif event["EventType"] == 7:
+            print("logout")
     return
 def retrieve_drawers(toolBoxID,test):
     if test == True:
         #input("Please enter the Toolbox number for the drawer in the given video:")
-        f = open('drawer0/drawer.json')
+        f = open('drawer2/drawer.json')
         drawers = json.load(f)
     else:
         print("Databsase not connected yet")
         exit()
     return drawers
 def  retrieve_tools(drawerID,toolboxID):
-    f = open('drawer0/tools.json')
+    f = open('drawer2/tools.json')
     tools = json.load(f)
     for tool in tools["Tools"]:
         #print(tool)
@@ -90,6 +94,7 @@ def update_tools(oldTools, newTools, events,test):
     return events, True
                 
 def wait_for_signal(hostIP,port):  
+    print("enter signal")
     schema = {
         "type" : "object",
         "properties" : {
@@ -106,6 +111,8 @@ def wait_for_signal(hostIP,port):
         while True:
             conn.send(b"I am alive")
             data = conn.recv(1024)
+            data = json.loads(data.decode('utf-8'))
+            print(data)
             if data !=None:
                 try:
                  jsonschema.validate(instance=data, schema=schema)
@@ -119,6 +126,7 @@ def wait_for_signal(hostIP,port):
     return data, startTimeStamp
 
 def get_footage(rtspStream, savedFootage, host, port, startTimeStamp):
+    print("get footage")
     timestampFrame =startTimeStamp
     schema = {"type" : "object",
              "properties" : { "stop": True}
@@ -157,7 +165,7 @@ def get_footage(rtspStream, savedFootage, host, port, startTimeStamp):
                     continue
                 result.write(frame)
          else:
-             raise RuntimeError("unabple to open RTSP stream " + rtspStream )
+             raise FileNotFoundError("unable to open RTSP stream " + rtspStream )
     savedVideo = cv2.VideoCapture(savedFootage) 
     return endTimeStamp, savedVideo
                 
