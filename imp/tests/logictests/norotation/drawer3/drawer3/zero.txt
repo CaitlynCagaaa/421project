@@ -1,0 +1,22 @@
+45shadowbox/45_fishsp_0.avi
+True
+Opened: Toolbox 0 Drawer 0: 2024-04-10 19:08:30.603486 1
+error:wrong tool2 2024-04-10 19:08:30.603486 1 0 crescent wrench13341683
+error:wrong tool7 2024-04-10 19:08:30.603486 1 0 crescent wrench13341473
+error:wrong tool9 2024-04-10 19:08:30.603486 1 0 crescent wrench13341302
+error:wrong tool17 2024-04-10 19:08:31.203489 1 0 socketSolo1334543
+CheckOut:2 2024-04-10 19:08:30.803487 1 0
+CheckOut:7 2024-04-10 19:08:30.870154 1 0
+CheckOut:9 2024-04-10 19:08:30.936821 1 0
+CheckOut:17 2024-04-10 19:08:31.136822 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-10 19:08:31.403490 1
+Opened: Toolbox 0 Drawer 0: 2024-04-10 19:08:31.736825 1
+CheckOut:9 2024-04-10 19:09:35.603811 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-10 19:09:37.470487 1
+Opened: Toolbox 0 Drawer 0: 2024-04-10 19:09:37.670488 1
+error:extra toolNone 2024-04-10 19:09:45.270526 1 0 pliers13341440
+error:extra toolNone 2024-04-10 19:09:45.270526 1 0 socketset13341005
+error:wrong tool13 2024-04-10 19:09:44.070520 1 0 socketSolo1334527
+CheckOut:5 2024-04-10 19:09:44.003853 1 0
+CheckOut:13 2024-04-10 19:09:44.003853 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-10 19:09:45.337193 1

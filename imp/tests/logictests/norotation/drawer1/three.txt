@@ -1,0 +1,14 @@
+drawer330_0_3.avi
+True
+Opened: Toolbox 0 Drawer 0: 2024-04-08 22:44:44.559646 1
+Closed: Toolbox 0 Drawer 0: 2024-04-08 22:44:51.359680 1
+Opened: Toolbox 0 Drawer 0: 2024-04-08 22:44:51.426347 1
+Closed: Toolbox 0 Drawer 0: 2024-04-08 22:44:51.559681 1
+Opened: Toolbox 0 Drawer 0: 2024-04-08 22:44:51.626348 1
+error:wrong tool15 2024-04-08 22:44:55.359700 1 0 pliers1305863
+CheckOut:0 2024-04-08 22:44:51.893016 1 0
+CheckOut:2 2024-04-08 22:44:52.893021 1 0
+CheckOut:3 2024-04-08 22:44:53.759692 1 0
+CheckOut:11 2024-04-08 22:44:53.759692 1 0
+CheckOut:15 2024-04-08 22:44:55.293033 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-08 22:44:55.559701 1

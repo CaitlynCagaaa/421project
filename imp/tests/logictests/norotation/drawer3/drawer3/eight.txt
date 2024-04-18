@@ -1,0 +1,35 @@
+45shadowbox/45_fishsp_8.avi
+True
+Opened: Toolbox 0 Drawer 0: 2024-04-11 00:23:17.754863 1
+error:extra toolNone 2024-04-11 00:23:20.354876 1 0 tapemeasure19491192
+error:extra toolNone 2024-04-11 00:23:19.554872 1 0 crescent wrench1889492
+error:wrong tool5 2024-04-11 00:23:17.754863 1 0 crescent wrench13341669
+error:wrong tool11 2024-04-11 00:23:17.754863 1 0 crescent wrench1408551
+error:wrong tool13 2024-04-11 00:23:17.754863 1 0 socketSolo1366540
+error:wrong tool15 2024-04-11 00:23:17.754863 1 0 crescent wrench1343837
+error:wrong tool4 2024-04-11 00:23:17.888197 1 0 shadowbox1334548
+error:wrong tool14 2024-04-11 00:23:17.954864 1 0 crescent wrench1334989
+error:wrong tool3 2024-04-11 00:23:20.288209 1 0 crescent wrench1334550
+CheckOut:2 2024-04-11 00:23:18.621534 1 0
+CheckOut:5 2024-04-11 00:23:17.888197 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-11 00:23:20.421543 1
+Opened: Toolbox 0 Drawer 0: 2024-04-11 00:23:20.488210 1
+error:extra toolNone 2024-04-11 00:23:27.021576 1 0 tapemeasure14571876
+error:extra toolNone 2024-04-11 00:23:27.088243 1 0 crescent wrench22001858
+error:extra toolNone 2024-04-11 00:23:27.021576 1 0 tapemeasure21521871
+error:wrong tool4 2024-04-11 00:23:20.488210 1 0 socketSolo1390551
+error:wrong tool14 2024-04-11 00:23:20.488210 1 0 crescent wrench1334988
+CheckOut:5 2024-04-11 00:23:20.488210 1 0
+CheckOut:13 2024-04-11 00:23:22.554887 1 0
+CheckOut:15 2024-04-11 00:23:23.154890 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-11 00:23:27.154910 1
+Opened: Toolbox 0 Drawer 0: 2024-04-11 00:23:27.421578 1
+error:wrong tool3 2024-04-11 00:23:27.421578 1 0 shadowbox1334550
+error:wrong tool4 2024-04-11 00:23:27.421578 1 0 shadowbox1406548
+error:wrong tool14 2024-04-11 00:23:27.421578 1 0 shadowbox1342985
+error:wrong tool4 2024-04-11 00:23:31.688266 1 0 crescent wrench1392551
+CheckOut:2 2024-04-11 00:23:28.688251 1 0
+CheckOut:4 2024-04-11 00:23:30.354926 1 0
+CheckOut:5 2024-04-11 00:23:27.421578 1 0
+CheckOut:13 2024-04-11 00:23:29.554922 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-11 00:23:35.088283 1

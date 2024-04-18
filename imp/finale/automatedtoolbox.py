@@ -47,14 +47,28 @@ def create_error_records(events,errors):
         #print(events)
     updatedEvents= events
     return updatedEvents
+
+"""
+    name:print_records
+    purpose: Print the events in the events list to the terminal. 
+    operation:
+    Event type 0 -> drawer opened
+    Event type 1 -> drawer closed
+    Event type 2 -> tool checked out
+    Event type 3 ->tool check in
+    Event type 4 -> wrong tool error
+    Event type 5-> extra tool error
+    Event type 6 -> runtime error
+
+"""
 def print_records(events, toolboxID):
-    #print(events)
+    
     for event in events["events"]:
         if event["EventType"] == 0:
             print("Opened: Toolbox " + str(toolboxID) + " Drawer "+ str(event["Location"]) + ": " + str(event["Timestamp"]) + " " + str(event["UserID"]))
         elif event["EventType"] == 1:
             print("Closed: Toolbox " + str(toolboxID) + " Drawer "+ str(event["Location"] )+ ": " + str(event["Timestamp"]) + " " + str(event["UserID"]))
-        #etc
+        
         elif event["EventType"] == 2: #<Tool identifier> <employee id> <time>  <location>
             print("Tool Checked Out:\n\t"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))
         elif event["EventType"] == 3:   
@@ -67,35 +81,51 @@ def print_records(events, toolboxID):
             print("Error:\n\t"  + "runtime error" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["Notes"]))      
 
     return
+
+"""
+    name: retrieve_drawers
+    purpose: Retrieve drawers that are in the given toolbox from the database.
+    operation: Use APIgatewayurl from Global_Config.yaml to call a api function that retrives drawers from the database. 
+"""
 def retrieve_drawers(toolBoxID):
     url =gcon.get("APIgatewayurl")+"get_drawers_info"
     drawers=APIFunctions_1_1.getDrawersInfo(url,(toolBoxID))
     return drawers
 
-def  retrieve_tools(drawerID,toolboxID):
+"""
+    name: retrieve_tools
+    purpose: Retrieve the tools that are in the given drawer from the database.
+    operation: Use APIgatewayurl from Global_Config.yaml to call a api function that retrives tools from the database. 
+        Then loop over tools list and add information necessary to track tools between frames.
+"""
+
+def  retrieve_tools(drawerID):
     url =gcon.get("APIgatewayurl")+"get_tools_info"
     print(drawerID)
     tools =APIFunctions_1_1.getToolsInfo(url,drawerID)
-
-    #print(tools)
     for tool in tools:
-        #print(tool)
         tool["timestamp"] = None
         tool["error"] = 0 
-        #print(tool)
-
     return tools
 
+"""
+    name: update_events
+    purpose: Add the events from the events list to the events table in the database.
+    operation:Use APIgatewayurl from Global_Config.yaml to call a api function that adds events from the database.
+"""
 def update_events(events):
 
     url =gcon.get("APIgatewayurl")+"add_event"
     
     for event in events["events"]:
-      #print(event)
+      
       ret =  APIFunctions_1_1.addEvent(url, event["EventType"], event["ToolID"], str(event["Timestamp"]), event["Location"], event["UserID"], event["Notes"])
-        
     return ret
-
+"""
+    name: update_tools
+    purpose: Update the status of the tools in the database and add tool checkout and checkin events to the events list.
+    operation:Use APIgatewayurl from Global_Config.yaml to call a api function that updates the tool status of tools in the tools table in the database.
+"""
 def update_tools(oldTools, newTools, events,userID,test):
       
     if newTools!=None and oldTools!=None:
@@ -113,7 +143,13 @@ def update_tools(oldTools, newTools, events,userID,test):
                  events["events"].append({"ID": events["total"], "EventType": 3, "ToolID": newTool['ToolID'], "UserID": userID, "Timestamp":newTool['timestamp'] ,"Location": newTool['ToolDrawerID'],"Notes":None})
                 events["total"] = events["total"]+1
     return events
-                
+
+"""
+    name: wait_for_signal
+    purpose: Wait for signal on port from hostIP that has toolbox and UserID, and get the timestamp that signal was recieved.  Also sends heartbeat signal over the connection while waiting.
+    operation:  Expects a signal in the form:  {"toolbox": #, "UserID": #}. Waits for signal in infinite while loop, if singla recived,
+        validates that it is correct using jsonschem.validate, if the json correct it will end the loop and close the connection.
+"""           
 def wait_for_signal(hostIP,port):  
     print("enter signal")
     schema = {
@@ -133,7 +169,7 @@ def wait_for_signal(hostIP,port):
             conn.send(b"I am alive")
             data = conn.recv(1024)
             data = json.loads(data.decode('utf-8'))
-            print(data)
+            #print(data)
             if data !=None:
                 try:
                  jsonschema.validate(instance=data, schema=schema)
