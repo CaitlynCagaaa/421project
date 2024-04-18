@@ -104,9 +104,9 @@ with open("drawer"+'/tools.json', 'w') as f:
              cropped_image = image[y:y+h, x:x+w].copy()
              cropped_image2 = image2[y:y+h, x:x+w].copy()
              if con.get('segment')==0 :
-              dump = [{'DrawerID': 0, 'DrawerNum': 0 , 'DrawerBoxNum': 0,'DrawerStartX': x, 'DrawerStartY' :y ,'DrawerPixelWidth' :w , 'DrawerPixelHeight' : h,"DrawerYAML": args.confName, 'DrawerPicAllTools':"drawer"+'/drawer_1', 'DrawerPicNoTools':"drawer"+'/drawer_2', 'DrawerSymbols':[{'ID': 0,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }, {'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' },{'ID': 2,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }] }]
+              dump = [{'ID': 0, 'DrawerNum': 0 , 'BoxNum': 0,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picall':"drawer"+'/drawer_1', 'picno':"drawer"+'/drawer_2', 'drawersymbols':[{'ID': 0,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }, {'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' },{'ID': 2,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }] }]
              elif  con.get('segment')==1 :
-              dump = [{'DrawerID': 0, 'DrawerNum': 0 , 'DrawerBoxNum': 0,'DrawerStartX': x, 'DrawerStartY' :y ,'DrawerPixelWidth' :w , 'DrawerPixelHeight' : h, "DrawerYAML" : args.confName, 'DrawerPicAllTools':"drawer"+'/drawer_2', 'DrawerPicNoTools':"drawer"+'/drawer_1', 'DrawerSymbols':[{'ID': 0,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }, {'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' },{'ID': 2,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }] }]
+              dump = [{'ID': 0, 'DrawerNum': 0 , 'BoxNum': 0,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picall':"drawer"+'/drawer_2', 'picno':"drawer"+'/drawer_1', 'drawersymbols':[{'ID': 0,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }, {'ID': 1,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' },{'ID': 2,'X': 0, 'Y' :0 ,'W' :0 , 'H' : 0, 'picall': 'none' }] }]
              else:
                 print("Plese set segment to 0 or 1 according to which picture is being thresholded in the config file for the use of this script ")
                 exit()
@@ -149,9 +149,9 @@ with open("drawer"+'/tools.json', 'w') as f:
             cropped_image2 = image2[y:y+h, x:x+w].copy()
             
             if con.get('segment')==0 :
-                    dump = {'ToolID': j, 'ToolName': 'img' + str(i),'ToolType': None, 'ToolClassifierType': None, 'ToolDrawerID': 0,  ' ToolSymbolAvailable': False,'ToolSymbolPath': None , 'ToolCheckedOut': False,'ToolStartX': x, 'ToolStartY' :y ,'ToolPixelWidth' :w , 'ToolPixelHeight' : h, 'ToolPictureWithPath': "drawer"+one, 'ToolPictureWithoutPath': "drawer"+two, 'ToolInfoTakenManually':False}
+                    dump = {'ID': j, 'Name': 'img' + str(i),'ToolType': None, 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False,'IDMark': None , 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picfull': "drawer"+one, 'picnull': "drawer"+two, 'Manual':False}
             elif con.get('segment')==1 :
-                    dump = {'ToolID': j, 'ToolName': 'img' + str(i),'ToolType': None, 'ToolClassifierType': None, 'ToolDrawerID': 0,  ' ToolSymbolAvailable': False,'ToolSymbolPath': None , 'ToolCheckedOut': False,'ToolStartX': x, 'ToolStartY' :y ,'ToolPixelWidth' :w , 'ToolPixelHeight' : h, 'ToolPictureWithPath': "drawer"+two, 'ToolPictureWithoutPath': "drawer"+one, 'ToolInfoTakenManually':False}
+                    dump = {'ID': j, 'Name': 'img' + str(i),'ToolType': None, 'ClassifierThinks': None, 'Location': 0, 'Who': None, 'IDAvail': False,'IDMark': None , 'CheckedOut': False,'X': x, 'Y' :y ,'W' :w , 'H' : h, 'picfull': "drawer"+two, 'picnull': "drawer"+one, 'Manual':False}
             json.dump(dump,f)
             f.write(',\n')
         #print(cropped_image)

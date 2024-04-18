@@ -1,0 +1,34 @@
+PS C:\Users\caitl\421project\imp> python getfootage.py -record
+enter signal
+Connected by ('127.0.0.1', 55522)
+{'toolbox': 1, 'UserID': 0}
+get footage
+True
+<socket.socket fd=1888, family=2, type=1, proto=0, laddr=('127.0.0.1', 65432), raddr=('127.0.0.1', 55523)>
+b'{"toolbox": 1, "UserID": 0}'
+check
+2024-04-12 00:06:38.962439
+2024-04-12 00:06:49.538385
+recording
+None
+True
+Databsase not connected yet
+No database
+login
+Opened: Toolbox 0 Drawer 0: 2024-04-12 00:06:26.571731 1
+error:extra toolNone 2024-04-12 00:06:26.571731 1 0 socketSolo1407558
+error:wrong tool1 2024-04-12 00:06:26.571731 1 0 ratchet12201752
+CheckOut:2 2024-04-12 00:06:26.571731 1 0
+CheckOut:3 2024-04-12 00:06:26.571731 1 0
+CheckOut:5 2024-04-12 00:06:26.571731 1 0
+Closed: Toolbox 0 Drawer 0: 2024-04-12 00:06:26.705065 1
+No database
+No database
+Opened: Toolbox 0 Drawer 0: 2024-04-12 00:06:26.838399 1
+error:extra toolNone 2024-04-12 00:06:40.705135 1 0 socketSolo1439527
+error:extra toolNone 2024-04-12 00:06:40.505134 1 0 socketset1262816
+CheckOut:1 2024-04-12 00:06:31.971758 1 0
+CheckOut:2 2024-04-12 00:06:26.838399 1 0
+No database
+enter signal
+python sendsignal.py twice

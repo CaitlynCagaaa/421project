@@ -23,6 +23,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         data = s.recv(1024)
         print("Received data:", data)  # Step 5: Print received data
         time.sleep(5)
+        print("check")
         data_to_send = json.dumps({"stop" : True}).encode('utf-8')
         s.send(data_to_send)
         

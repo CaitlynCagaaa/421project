@@ -36,10 +36,10 @@ try:
             data = {"toolbox": 0, "UserID": 0}
             test = True
         else:
-            data, startTimeStamp = main.wait_for_signal(gcon.get("rfidhost"),gcon.get("rfidport")) 
+            data, startTimeStamp, conn, s = main.wait_for_signal(gcon.get("rfidhost"),gcon.get("rfidport")) 
             rtsp = gcon.get("RTSP")
             try:
-                endTimeStamp, savedVideo = main.get_footage(rtsp[data["toolbox"]],"temp"+ str(data["toolbox"])+".avi", gcon.get("rfidhost"),gcon.get("rfidport"), startTimeStamp) 
+                endTimeStamp, savedVideo = main.get_footage(rtsp[data["toolbox"]],"temp"+ str(data["toolbox"])+".avi", conn,s, startTimeStamp) 
             except FileNotFoundError as err:
                 events["events"].append({"ID": events["total"], "EventType": 6, "ToolID": None, "UserID": data["UserID"], "Timestamp":startTimeStamp ,"Location": None,"Notes": "FileNotFound "+  str(err)})
                 events["total"] =events["total"]+1
@@ -49,12 +49,12 @@ try:
             events["total"] =events["total"]+1
             test = False
         if args.record:
-            #print("recording")
-            os.makedirs(startTimeStamp.month, exist_ok = True) 
+            print("recording")
+            os.makedirs(str(startTimeStamp.month), exist_ok = True) 
             frame_width = int(savedVideo.get(3)) 
             frame_height = int(savedVideo.get(4)) 
             size = (frame_width, frame_height) 
-            recordedVideo = cv2.VideoWriter( startTimeStamp.month+ "/" +startTimeStamp.day+ startTimeStamp.hour+ startTimeStamp.second+ startTimeStamp.microsecond + "record.avi",  
+            recordedVideo = cv2.VideoWriter( str(startTimeStamp.month)+ "/toolbox"+ str(data["toolbox"]) +str(startTimeStamp.day)+ str(startTimeStamp.hour)+ str(startTimeStamp.second)+ str(startTimeStamp.microsecond) + "record.avi",  
             cv2.VideoWriter_fourcc(*'MJPG'), 
             10, size) 
             #print("test" +str(timestampStart) + ".avi")
@@ -74,6 +74,7 @@ try:
                     main.update_events(events)   
                     continue
             #print(errors)
+            timestampFrame = startTimeStamp
             try:
                 while(ret):
                     #print(ret)

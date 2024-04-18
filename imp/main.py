@@ -36,31 +36,29 @@ def print_records(events, toolboxID):
             print("Closed: Toolbox " + str(toolboxID) + " Drawer "+ str(event["Location"] )+ ": " + str(event["Timestamp"]) + " " + str(event["UserID"]))
         #etc
         elif event["EventType"] == 2: #<Tool identifier> <employee id> <time>  <location>
-            print("CheckOut:"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))
+            print("Tool Checked Out:\n\t"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))
         elif event["EventType"] == 3:   
-            print("CheckIn:"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))  
+            print("Tool Check In:\n\t"  + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"] ))  
         elif event["EventType"] == 4:  #<error type> <tool identifier> <employee id> <time> <location> 
-            print("error:"  +"wrong tool" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))
+            print("Error:\n\t"  +"wrong tool" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))
         elif event["EventType"] == 5:   
-            print("error:"  +"extra tool" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))
+            print("Error:\n\t"  +"extra tool" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))
         elif event["EventType"] == 6:   
-            print("error:"  + "runtime error" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))      
-        elif event["EventType"] == 7:
-            print("login")
-        elif event["EventType"] == 7:
-            print("logout")
+            print("Error:\n\t"  + "runtime error" + str(event["ToolID"]) +" " + str(event["Timestamp"]) + " " + str(event["UserID"]) + " " + str(event["Location"]) + " " +str(event["notes"]))      
+
     return
 def retrieve_drawers(toolBoxID,test):
     if test == True:
         #input("Please enter the Toolbox number for the drawer in the given video:")
-        f = open('drawer2/drawer.json')
+        f = open('drawer3_symbol/drawer.json')
         drawers = json.load(f)
     else:
         print("Databsase not connected yet")
-        exit()
+        f = open('drawer1/drawer.json')
+        drawers = json.load(f)
     return drawers
 def  retrieve_tools(drawerID,toolboxID):
-    f = open('drawer2/tools.json')
+    f = open('drawer1/tools.json')
     tools = json.load(f)
     for tool in tools["Tools"]:
         #print(tool)
@@ -71,6 +69,8 @@ def  retrieve_tools(drawerID,toolboxID):
     return tools
 
 def update_events(events):
+    print("No database")
+    print_records(events,0)
     for event in events:
         print("No database")
         return 0
@@ -123,22 +123,18 @@ def wait_for_signal(hostIP,port):
             else:    
                 continue
     
-    return data, startTimeStamp
+    return data, startTimeStamp, conn, s
 
-def get_footage(rtspStream, savedFootage, host, port, startTimeStamp):
-    print("get footage")
-    timestampFrame =startTimeStamp
-    schema = {"type" : "object",
-             "properties" : { "stop": True}
+def get_footage(rtspStream, savedFootage, conn, s, startTimeStamp):
+        print("get footage")
+        timestampFrame =startTimeStamp
+        endTimeStamp =None
+        data =None
+        schema = {"type" : ['object', 'boolean']
              }
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind((host, port))  
-    s.listen(2)
-    conn, addr = s.accept()
-    with conn:
-         data = conn.recv(1024)
-         vid = cv2.VideoCapture(rtspStream) 
-         if vid.isOpened():
+        vid = cv2.VideoCapture(rtspStream) 
+        if vid.isOpened():
+            print(vid.isOpened())
             frame_width = int(vid.get(3)) 
             frame_height = int(vid.get(4)) 
             size = (frame_width, frame_height) 
@@ -148,26 +144,42 @@ def get_footage(rtspStream, savedFootage, host, port, startTimeStamp):
             vid.set(cv2.CAP_PROP_BUFFERSIZE,70)
             vid.set(cv2.CAP_PROP_FPS, 10)
             stopNotRecv = True
-            while endTimeStamp ==None or timestampFrame > endTimeStamp:
-                timedel = (timestampFrame + timedelta(milliseconds= 1000/15))-timestampFrame 
-                timestampFrame = timestampFrame +timedel
+            while endTimeStamp ==None or timestampFrame <= endTimeStamp:
+                #print(timestampFrame)
                 if stopNotRecv:
-                    data = conn.recv(1024)
+                    s.setblocking(0)
+                    try :
+                        conn, addr = s.accept()
+                        print(conn)
+                        conn.setblocking(0)
+                        data = conn.recv(1024)
+                        print(data)
+                        data = json.loads(data.decode('utf-8'))
+                    except BlockingIOError:
+                        pass
                     if data !=None:
                         try:
                             jsonschema.validate(instance=data, schema=schema)
+                            print("check")
                         except jsonschema.exceptions.ValidationError as err:
+                            data =None
                             continue
                         endTimeStamp = datetime.now()
+                        print(endTimeStamp)
+                        print(timestampFrame)
                         stopNotRecv = False
+                        data =None
                 ret, frame = vid.read() 
                 if ret == False:
                     continue
+                timedel = (timestampFrame + timedelta(milliseconds= 1000/10))-timestampFrame 
+                timestampFrame = timestampFrame +timedel
                 result.write(frame)
-         else:
+        else:
              raise FileNotFoundError("unable to open RTSP stream " + rtspStream )
-    savedVideo = cv2.VideoCapture(savedFootage) 
-    return endTimeStamp, savedVideo
+        savedVideo = cv2.VideoCapture(savedFootage) 
+        s.close()
+        return endTimeStamp, savedVideo
                 
                     
                     
@@ -251,9 +263,9 @@ def main():
         else:
             print("failed to open")        
     else:
-         data, startTimeStamp = wait_for_signal(gcon.get("rfidhost"),gcon.get("rfidport")) 
+         data, startTimeStamp, conn, s = wait_for_signal(gcon.get("rfidhost"),gcon.get("rfidport")) 
          rtsp = gcon.get("RTSP")
-         endTimeStamp, savedVideo =get_footage(rtsp[data["toolbox"]],"temp"+ str(data["toolbox"])+".avi", gcon.get("rfidhost"),gcon.get("rfidport"), startTimeStamp) 
+         endTimeStamp, savedVideo =get_footage(rtsp[data["toolbox"]],"temp"+ str(data["toolbox"])+".avi", conn,s, startTimeStamp) 
     #retrieve from database
     #print("done")
 

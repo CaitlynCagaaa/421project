@@ -1,12 +1,12 @@
 import cv2 
 import numpy as np
 from matplotlib import pyplot as plt
-import datetime;
 import math
 import json
 import yaml
+import imutils
 
-gcon =open("g_conf.yaml", "r")
+gcon =open("Global_Config.yaml", "r")
 gcon =yaml.safe_load(gcon)
 
 def find_drawer(frame, drawers, record):
@@ -15,48 +15,52 @@ def find_drawer(frame, drawers, record):
    #print(drawers)
    for drawer in drawers:
      #print("drawer")
-     found, template, place, similairty = is_open(frame,modFrame, drawer["drawersymbols"],record)
+     found, template, place, similairty = is_open(frame,modFrame, drawer["DrawerSymbols"],record)
      if found:
-        drawSize = drawer_location(modFrame, place,similairty, drawer, template,record)
-        return modFrame, drawer, drawSize
-      
+        drawLocation = drawer_location(modFrame, place,similairty, drawer, template,record)
+        return modFrame, drawer, drawLocation
+   #print("drawer done")
    return modFrame, None, None
 
 def drawer_location(modFrame, place, similarirty, drawer, template, record):
   xDiff = template["X"]-place[0][0]
   yDiff = template["Y"]-place[0][1]
-  wDiff = drawer["W"]-xDiff
-  hDiff = drawer["H"]-yDiff 
+  wDiff = drawer["DrawerPixelWidth"]-xDiff
+  hDiff = drawer["DrawerPixelHeight"]-yDiff 
   #print(xDiff, yDiff)
   
-  drawSize = (drawer["X"],drawer["Y"], wDiff,hDiff)
+  drawLocation = (drawer["DrawerStartX"],drawer["DrawerStartY"], wDiff,hDiff)
   #print(drawSize)
   if record ==1:
     (wt, ht), _ = cv2.getTextSize(
-          'drawer '+ str(drawer["ID"]) +" "+ str(round(similarirty,2))+'%', cv2.FONT_HERSHEY_SIMPLEX, .002*drawSize[3], 5)
-    modFrame = cv2.rectangle(modFrame, (drawSize[0], drawSize[1] - ht), (drawSize[0] + wt, drawSize[1]), (255, 0,0), 3)
-    cv2.putText(modFrame, 'drawer '+ str(drawer["ID"]) +" "+ str(round(similarirty,2))+'%', (drawSize[0], drawSize[1]),cv2.FONT_HERSHEY_SIMPLEX,.002*drawSize[3], (36,255,12), 1)
-    cv2.rectangle(modFrame, (drawSize[0],drawSize[1]), (drawSize[2]+drawSize[0], drawSize[3]+drawSize[1]), (256,256,256), 3)
+          'drawer '+ str(drawer["DrawerID"]) +" "+ str(round(similarirty,2))+'%', cv2.FONT_HERSHEY_SIMPLEX, .002*drawLocation[3], 5)
+    modFrame = cv2.rectangle(modFrame, (drawLocation[0], drawLocation[1] - ht), (drawLocation[0] + wt, drawLocation[1]), (255, 0,0), 3)
+    cv2.putText(modFrame, 'drawer '+ str(drawer["DrawerID"]) +" "+ str(round(similarirty,2))+'%', (drawLocation[0], drawLocation[1]),cv2.FONT_HERSHEY_SIMPLEX,.002*drawLocation[3], (36,255,12), 1)
+    cv2.rectangle(modFrame, (drawLocation[0],drawLocation[1]), (drawLocation[2]+drawLocation[0], drawLocation[3]+drawLocation[1]), (256,256,256), 3)
     cv2.imwrite("drawer.jpg",modFrame)
     #cv2.waitKey(0)
-  return drawSize
+  return drawLocation
 
 
 def is_open(frame,modFrame, templates,record):
-  i = 0
-  color = [(256,0,0), (0,256,0), (0,0,256)]
+  
   placeMax =None
   similarityMax = 0
   foundTemplate =None
   foundMax =False
+  templates= json.loads(templates)
+  print(templates)
   for template in templates:
-     pic = cv2.imread(template["picall"])
+     #print(template, "check")
+     
+     pic = imutils.url_to_image(gcon.get("webserverurl")+template["picall"])
      frame_width = pic.shape[1]
      frame_height = pic.shape[0]
+     
      #image = frame[template["Y"]-gcon.get("buffery"):template["H"]+template["Y"]+2*gcon.get("buffery"), 0:frame.shape[1]]
      #cv2.imshow("image",image)
      #cv2.waitKey(0)
-     found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,color[i], gcon.get("thresholdsymbol"),record,gcon.get("degrees"),gcon.get("degreesdiv"))
+     found,place,similarity = draw_temp(pic,frame, modFrame, frame_width, frame_height,(256,0,0), gcon.get("thresholdsymbol"),record,gcon.get("degrees"),gcon.get("degreesdiv"))
      if found == True and similarity>similarityMax and template["Y"] -place[0][1] < gcon.get("buffery")*gcon.get("multfordrawersymbolbuffer"):
        placeMax = place
        similarityMax = similarity
@@ -68,7 +72,7 @@ def is_open(frame,modFrame, templates,record):
          text, cv2.FONT_HERSHEY_SIMPLEX, .005*(place[1][0]-place[0][0]), 2)
         modFrame = cv2.rectangle(modFrame, (place[0][0], place[0][1] - ht), (place[0][0] + wt, place[0][1]), (255, 0,0), 3)
         cv2.putText(modFrame, text, (place[0][0], place[0][1]),cv2.FONT_HERSHEY_SIMPLEX,.005*(place[1][0]-place[0][0]), (36,255,12), 1)
-     
+  #print("donetemplates")
   return foundMax, foundTemplate, placeMax, similarityMax
 
 
@@ -135,7 +139,6 @@ def draw_temp(template, frame,modFrame, w, h, color1, threshold, draw,degrees,de
     similarity =0
     temp = template
     x =0
-    maxPeakValue= 0
     while x <=degrees*degreeDiv:
      template =temp
    #  print(str(x) + " 1")
